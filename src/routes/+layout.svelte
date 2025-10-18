@@ -1,26 +1,23 @@
-<script lang="ts">
-	import '../app.css';
-	import favicon from '$lib/assets/favicon.svg';
-	import Navbar from '$lib/components/ui/navbar.svelte';
+<script>
 	import Footer from '$lib/components/ui/footer.svelte';
-
-	let { children } = $props();
+	import Navbar from '$lib/components/ui/navbar.svelte';
+	import ScrollToTop from '$lib/components/ui/scroll-to-top.svelte';
+	import '../app.css';
 </script>
 
-<svelte:head>
-	<link rel="icon" href={favicon} />
-	<title>Paul Mbui - My Portfolio</title>
-	<meta name="description" content="Paul Mbui - My Portfolio" />
-</svelte:head>
-
-<body>
-	<section>
-		<Navbar />
-	</section>
+<div class="min-h-screen bg-black text-white transition-colors duration-300">
+	<Navbar />
 	<main>
-		{@render children?.()}
+		<slot />
 	</main>
-	<footer>
+	<ScrollToTop />
+	<footer class="relative border-t border-emerald-500/20 bg-black/50 px-6 py-8">
 		<Footer />
 	</footer>
-</body>
+</div>
+
+<style>
+	:global(html) {
+		scroll-behavior: smooth;
+	}
+</style>

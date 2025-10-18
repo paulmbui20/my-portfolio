@@ -1,38 +1,109 @@
-# sv
+# My Portfolio (SvelteKit + Tailwind)
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+A modern, responsive developer portfolio built with SvelteKit, TypeScript and Tailwind CSS. This repo is a revamp of an earlier static site and includes a responsive navbar, dark mode, and interactive UI components.
 
-## Creating a project
+## Quick summary
 
-If you're seeing this, you've probably already done this step. Congrats!
+- Framework: SvelteKit + TypeScript
+- Styling: Tailwind CSS (custom color scales)
+- Key components: `Navbar` (with dark mode), `ScrollToTop` (floating action)
+- Pages: Home, About, Projects, Services, Contact
 
-```sh
-# create a new project in the current directory
-npx sv create
+## What I changed / added
 
-# create a new project in my-app
-npx sv create my-app
+- Responsive navbar with dark mode toggle — `src/lib/components/ui/navbar.svelte`
+- Floating scroll-to-top button — `src/lib/components/ui/scroll-to-top.svelte`
+- Global layout wiring (navbar + scroll-to-top) — `src/routes/+layout.svelte`
+- Placeholder pages and sections for Home, About, Projects, Services, Contact — `src/routes/*`
+- Tailwind config with custom primary (`#10b981`) and secondary color scales — `tailwind.config.js`
+
+## Directory structure
+
+(only the most relevant files/folders shown)
+
+```
+my-portfolio-v2/
+├─ tailwind.config.js            # Tailwind custom color config (primary: #10b981)
+├─ package.json
+├─ tsconfig.json
+├─ svelte.config.js
+├─ vite.config.ts
+├─ src/
+│  ├─ app.css
+│  ├─ app.d.ts
+│  ├─ lib/
+│  │  ├─ index.ts
+│  │  ├─ assets/
+│  │  │  └─ favicon.svg
+│  │  └─ components/
+│  │     ├─ sections/
+│  │     │  ├─ hero.svelte
+│  │     │  ├─ faqs.svelte
+│  │     │  └─ cta.svelte
+│  │     └─ ui/
+│  │        ├─ navbar.svelte
+│  │        └─ scroll-to-top.svelte
+│  └─ routes/
+│     ├─ +layout.svelte
+│     ├─ +page.svelte             # Home
+│     ├─ about/+page.svelte
+│     ├─ projects/+page.svelte
+│     ├─ services/+page.svelte
+│     └─ contact/+page.svelte
+└─ static/
+   ├─ images/
+   │  └─ me.webp
+   └─ robots.txt
 ```
 
-## Developing
+## Local development
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Requirements
+- Node.js 18+ (or the runtime you prefer)
+- npm / pnpm / yarn
 
-```sh
-npm run dev
+Install dependencies and run dev server:
 
-# or start the server and open the app in a new browser tab
+```bash
+npm install
 npm run dev -- --open
 ```
 
-## Building
+Build & preview production:
 
-To create a production version of your app:
-
-```sh
+```bash
 npm run build
+npm run preview
 ```
 
-You can preview the production build with `npm run preview`.
+## Tailwind color notes
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+Primary color: `#10b981` (teal/green)
+- Custom shades exposed as `primary-50` … `primary-900` in `tailwind.config.js`.
+
+Secondary color: a neutral/blue-gray scale (`secondary-50` … `secondary-900`) to balance the palette.
+
+If you want different shades, I can generate alternatives or switch to a different hue.
+
+## Component mapping
+
+- `Navbar` — global navigation + dark mode toggle
+- `ScrollToTop` — floating quick-nav action
+- `hero`, `cta`, `faqs` — reusable page sections
+
+## Next steps (recommended)
+
+- Replace placeholder content with real projects, images and copy
+- Create a `ProjectCard` component and load project data from a JSON/YAML file
+- Add entrance animations (hero, project cards) and small micro-interactions
+- Implement contact form submission (server endpoint or third-party service)
+- Add tests and CI (linting, typecheck, build)
+
+---
+
+If you'd like, I can now:
+- Implement a polished hero section inspired by the Dribbble design
+- Create animated project cards and wire them to real project data
+- Improve accessibility and run a11y checks
+
+Tell me which task to do next and I’ll start it.
