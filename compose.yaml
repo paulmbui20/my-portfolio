@@ -16,8 +16,6 @@ services:
     ports:
       - "${PORT:-3000}:3000"
     restart: unless-stopped
-    labels:
-      <<: *default-labels
     logging:
       driver: "json-file"
       options:
