@@ -49,7 +49,7 @@
 			<p class="mb-8 text-slate-400">The project you're looking for doesn't exist.</p>
 			<a
 				href="/projects"
-				class="inline-block rounded-full bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-4 font-semibold transition-transform hover:scale-105"
+				class="inline-block rounded-full bg-gradient-to-r from-primary-600 to-primary-600 px-8 py-4 font-semibold transition-transform hover:scale-105"
 			>
 				View All Projects
 			</a>
@@ -61,10 +61,10 @@
 		<section class="relative overflow-hidden px-6 pt-32 pb-20">
 			<div class="pointer-events-none absolute inset-0 overflow-hidden">
 				<div
-					class="animate-blob absolute top-0 left-1/4 h-96 w-96 rounded-full bg-purple-500 opacity-10 mix-blend-multiply blur-3xl filter"
+					class="animate-blob absolute top-0 left-1/4 h-96 w-96 rounded-full bg-primary-500 opacity-10 mix-blend-multiply blur-3xl filter"
 				></div>
 				<div
-					class="animate-blob animation-delay-2000 absolute top-0 right-1/4 h-96 w-96 rounded-full bg-pink-500 opacity-10 mix-blend-multiply blur-3xl filter"
+					class="animate-blob animation-delay-2000 absolute top-0 right-1/4 h-96 w-96 rounded-full bg-primary-500 opacity-10 mix-blend-multiply blur-3xl filter"
 				></div>
 			</div>
 
@@ -74,20 +74,20 @@
 						<!-- Back Button -->
 						<a
 							href="/projects"
-							class="mb-8 inline-flex items-center gap-2 text-purple-400 transition-all hover:gap-3"
+							class="mb-8 inline-flex items-center gap-2 text-primary-400 transition-all hover:gap-3"
 						>
 							<span>←</span> Back to Projects
 						</a>
 
 						<!-- Category Badge -->
 						<div
-							class="mb-6 inline-block rounded-full bg-purple-500/20 px-4 py-2 text-sm text-purple-300"
+							class="mb-6 inline-block rounded-full bg-primary-500/20 px-4 py-2 text-sm text-primary-300"
 						>
 							{project.category}
 						</div>
 
 						<h1
-							class="mb-6 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-5xl font-bold text-transparent md:text-7xl"
+							class="mb-6 bg-gradient-to-r from-primary-400 to-primary-400 bg-clip-text text-5xl font-bold text-transparent md:text-7xl"
 						>
 							{project.title}
 						</h1>
@@ -140,7 +140,7 @@
 								href={project.liveUrl}
 								target="_blank"
 								rel="noopener noreferrer"
-								class="flex items-center gap-2 rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-3 font-semibold transition-transform hover:scale-105"
+								class="flex items-center gap-2 rounded-lg bg-gradient-to-r from-primary-600 to-primary-600 px-6 py-3 font-semibold transition-transform hover:scale-105"
 							>
 								View Live Site <span>→</span>
 							</a>
@@ -150,7 +150,7 @@
 								href={project.githubUrl}
 								target="_blank"
 								rel="noopener noreferrer"
-								class="flex items-center gap-2 rounded-lg border-2 border-purple-500 px-6 py-3 font-semibold transition-all hover:scale-105 hover:bg-purple-500/10"
+								class="flex items-center gap-2 rounded-lg border-2 border-primary-500 px-6 py-3 font-semibold transition-all hover:scale-105 hover:bg-primary-500/10"
 							>
 								💻 View Code
 							</a>
@@ -163,7 +163,7 @@
 					<div class="space-y-12 lg:col-span-2">
 						<!-- About Project -->
 						<div in:fly={{ y: 30, delay: 300 }}>
-							<h2 class="mb-6 text-3xl font-bold text-purple-400">About the Project</h2>
+							<h2 class="mb-6 text-3xl font-bold text-primary-400">About the Project</h2>
 							<p class="text-lg leading-relaxed text-slate-300">
 								{project.description}
 							</p>
@@ -171,11 +171,11 @@
 
 						<!-- Features -->
 						<div in:fly={{ y: 30, delay: 400 }}>
-							<h2 class="mb-6 text-3xl font-bold text-purple-400">Key Features</h2>
+							<h2 class="mb-6 text-3xl font-bold text-primary-400">Key Features</h2>
 							<div class="space-y-4">
 								{#each project.features as feature, i}
 									<div
-										class="flex items-start gap-4 rounded-xl border border-slate-700/50 bg-slate-800/30 p-4 transition-all hover:border-purple-500/50"
+										class="flex items-start gap-4 rounded-xl border border-slate-700/50 bg-slate-800/30 p-4 transition-all hover:border-primary-500/50"
 									>
 										<div class="mt-1 text-2xl">✓</div>
 										<p class="text-slate-300">{feature}</p>
@@ -186,13 +186,13 @@
 
 						<!-- Challenges -->
 						<div in:fly={{ y: 30, delay: 500 }}>
-							<h2 class="mb-6 text-3xl font-bold text-purple-400">Challenges & Solutions</h2>
+							<h2 class="mb-6 text-3xl font-bold text-primary-400">Challenges & Solutions</h2>
 							<div class="space-y-4">
 								{#each project.challenges as challenge, i}
 									<div class="rounded-xl border border-slate-700/50 bg-slate-800/30 p-6">
 										<div class="mb-3 flex items-center gap-3">
 											<div
-												class="flex h-8 w-8 items-center justify-center rounded-full bg-purple-500/20 font-bold text-purple-400"
+												class="flex h-8 w-8 items-center justify-center rounded-full bg-primary-500/20 font-bold text-primary-400"
 											>
 												{i + 1}
 											</div>
@@ -206,11 +206,11 @@
 
 						<!-- Results -->
 						<div in:fly={{ y: 30, delay: 600 }}>
-							<h2 class="mb-6 text-3xl font-bold text-purple-400">Results & Impact</h2>
+							<h2 class="mb-6 text-3xl font-bold text-primary-400">Results & Impact</h2>
 							<div class="grid gap-6 sm:grid-cols-3">
 								{#each project.results as result, i}
 									<div
-										class="rounded-xl border border-purple-500/20 bg-gradient-to-br from-purple-500/10 to-pink-500/10 p-6 text-center transition-transform hover:scale-105"
+										class="rounded-xl border border-primary-500/20 bg-gradient-to-br from-primary-500/10 to-primary-500/10 p-6 text-center transition-transform hover:scale-105"
 									>
 										<div class="mb-3 text-4xl">
 											{i === 0 ? '📈' : i === 1 ? '⚡' : '🎯'}
@@ -224,11 +224,11 @@
 						<!-- Gallery -->
 						{#if project.gallery && project.gallery.length > 0}
 							<div in:fly={{ y: 30, delay: 700 }}>
-								<h2 class="mb-6 text-3xl font-bold text-purple-400">Project Gallery</h2>
+								<h2 class="mb-6 text-3xl font-bold text-primary-400">Project Gallery</h2>
 								<div class="grid grid-cols-2 gap-4">
 									{#each project.gallery as item, i}
 										<div
-											class="group flex aspect-video items-center justify-center rounded-xl border border-slate-700/50 bg-slate-800/30 transition-all hover:border-purple-500/50"
+											class="group flex aspect-video items-center justify-center rounded-xl border border-slate-700/50 bg-slate-800/30 transition-all hover:border-primary-500/50"
 										>
 											<div class="text-6xl transition-transform group-hover:scale-110">{item}</div>
 										</div>
@@ -249,7 +249,7 @@
 							<div class="space-y-3">
 								{#each project.tech as tech}
 									<div
-										class="rounded-lg border border-slate-700/30 bg-slate-900/50 px-4 py-2 text-sm transition-all hover:border-purple-500/50 hover:bg-purple-500/10"
+										class="rounded-lg border border-slate-700/30 bg-slate-900/50 px-4 py-2 text-sm transition-all hover:border-primary-500/50 hover:bg-primary-500/10"
 									>
 										{tech}
 									</div>
@@ -259,7 +259,7 @@
 
 						<!-- CTA -->
 						<div
-							class="rounded-xl border border-purple-500/20 bg-gradient-to-br from-purple-500/10 to-pink-500/10 p-6"
+							class="rounded-xl border border-primary-500/20 bg-gradient-to-br from-primary-500/10 to-primary-500/10 p-6"
 							in:fly={{ x: 50, delay: 400 }}
 						>
 							<h3 class="mb-3 text-xl font-bold">Interested in Similar Work?</h3>
@@ -268,7 +268,7 @@
 							</p>
 							<a
 								href="/contact"
-								class="block rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-3 text-center font-semibold transition-transform hover:scale-105"
+								class="block rounded-lg bg-gradient-to-r from-primary-600 to-primary-600 px-6 py-3 text-center font-semibold transition-transform hover:scale-105"
 							>
 								Get In Touch
 							</a>
@@ -283,7 +283,7 @@
 			<section class="border-t border-slate-800 px-6 py-20">
 				<div class="mx-auto max-w-6xl">
 					<h2
-						class="mb-12 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-center text-4xl font-bold text-transparent"
+						class="mb-12 bg-gradient-to-r from-primary-400 to-primary-400 bg-clip-text text-center text-4xl font-bold text-transparent"
 					>
 						Related Projects
 					</h2>

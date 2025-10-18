@@ -34,10 +34,10 @@
 	<section class="relative overflow-hidden px-6 pt-32 pb-20">
 		<div class="pointer-events-none absolute inset-0 overflow-hidden">
 			<div
-				class="animate-blob absolute top-0 left-1/4 h-96 w-96 rounded-full bg-purple-500 opacity-10 mix-blend-multiply blur-3xl filter"
+				class="animate-blob absolute top-0 left-1/4 h-96 w-96 rounded-full bg-primary-500 opacity-10 mix-blend-multiply blur-3xl filter"
 			></div>
 			<div
-				class="animate-blob animation-delay-2000 absolute top-0 right-1/4 h-96 w-96 rounded-full bg-pink-500 opacity-10 mix-blend-multiply blur-3xl filter"
+				class="animate-blob animation-delay-2000 absolute top-0 right-1/4 h-96 w-96 rounded-full bg-primary-500 opacity-10 mix-blend-multiply blur-3xl filter"
 			></div>
 		</div>
 
@@ -45,7 +45,7 @@
 			<div class="relative z-10 mx-auto max-w-6xl">
 				<div in:fly={{ y: 30, duration: 600 }}>
 					<h1
-						class="mb-6 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-5xl font-bold text-transparent md:text-7xl"
+						class="mb-6 bg-gradient-to-r from-primary-400 to-primary-400 bg-clip-text text-5xl font-bold text-transparent md:text-7xl"
 					>
 						My Projects
 					</h1>
@@ -67,8 +67,8 @@
 					<button
 						on:click={() => filterProjects(category)}
 						class="rounded-full px-6 py-2 font-medium transition-all {selectedCategory === category
-							? 'bg-gradient-to-r from-purple-600 to-pink-600 shadow-lg shadow-purple-500/50'
-							: 'border border-slate-700/50 bg-slate-800/50 hover:border-purple-500/50'}"
+							? 'bg-gradient-to-r from-primary-600 to-primary-600 shadow-lg shadow-primary-500/50'
+							: 'border border-slate-700/50 bg-slate-800/50 hover:border-primary-500/50'}"
 						in:fly={{ y: -20, delay: i * 50 }}
 					>
 						{category}
@@ -85,7 +85,7 @@
 				{#each filteredProjects as project, i (project.slug)}
 					<a
 						href="/projects/{project.slug}"
-						class="group relative overflow-hidden rounded-2xl border border-slate-700/50 bg-slate-800/30 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20"
+						class="group relative overflow-hidden rounded-2xl border border-slate-700/50 bg-slate-800/30 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary-500/20"
 						in:fly={{ y: 50, delay: i * 100 }}
 					>
 						<div
@@ -100,7 +100,7 @@
 
 							<!-- Category Badge -->
 							<div
-								class="mb-3 inline-block rounded-full bg-purple-500/20 px-3 py-1 text-xs text-purple-300"
+								class="mb-3 inline-block rounded-full bg-primary-500/20 px-3 py-1 text-xs text-primary-300"
 							>
 								{project.category}
 							</div>
@@ -120,7 +120,7 @@
 							<!-- Tech Stack -->
 							<div class="mb-4 flex flex-wrap gap-2">
 								{#each project.tech.slice(0, 3) as tech}
-									<span class="rounded bg-slate-700/50 px-2 py-1 text-xs text-purple-300">
+									<span class="rounded bg-slate-700/50 px-2 py-1 text-xs text-primary-300">
 										{tech}
 									</span>
 								{/each}
@@ -133,7 +133,7 @@
 
 							<!-- View Project -->
 							<div
-								class="flex items-center gap-2 text-sm font-semibold text-purple-400 transition-all group-hover:gap-3"
+								class="flex items-center gap-2 text-sm font-semibold text-primary-400 transition-all group-hover:gap-3"
 							>
 								View Details <span>→</span>
 							</div>
@@ -160,7 +160,7 @@
 			</p>
 			<a
 				href="/contact"
-				class="inline-block rounded-full bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-4 font-semibold shadow-lg shadow-purple-500/50 transition-transform hover:scale-105"
+				class="inline-block rounded-full bg-gradient-to-r from-primary-600 to-primary-600 px-8 py-4 font-semibold shadow-lg shadow-primary-500/50 transition-transform hover:scale-105"
 			>
 				Start a Project
 			</a>
