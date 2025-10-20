@@ -24,12 +24,12 @@ services:
     # Optionally enable a lightweight healthcheck — note: uses wget/curl inside container.
     # If your runtime image doesn't include wget/curl, either install it in the image or
     # remove/comment the healthcheck below.
-    #healthcheck:
-    #  test: ["CMD-SHELL", "wget -qO- --timeout=2 http://localhost:${PORT:-3000}/ || exit 1"]
-    #  interval: 30s
-    #  timeout: 5s
-    #  retries: 3
-    #  start_period: 10s
+    healthcheck:
+     test: ["CMD-SHELL", "wget -qO- --timeout=2 http://localhost:${PORT:-3000}/ || exit 1"]
+     interval: 30s
+     timeout: 5s
+     retries: 3
+     start_period: 10s
 
 # Optional extra services (db, cache) can be added below, with appropriate depends_on
 # volumes: (none required for runtime by default)
