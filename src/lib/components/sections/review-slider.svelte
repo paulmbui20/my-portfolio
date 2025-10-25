@@ -1,26 +1,27 @@
 <script>
 	export let reviews = [
 		{
-			message: 'Paul delivered a beautiful, accessible product that increased conversions.',
-			name: 'Anna Johnson',
-			role: 'Head of Product',
-			organization: 'Acme Co.'
+			message:
+				'Paul delivered an exceptional website that perfectly represents our brand. His attention to detail and technical expertise made the entire process smooth and professional.',
+			name: 'Nasha Technologies Team',
+			role: 'CEO',
+			organization: 'Nasha Technologies'
 		},
 		{
 			message:
-				'Fast, communicative, and detail-oriented — our users noticed the improvement immediately.',
-			name: 'Brian Lee',
-			role: 'CTO',
-			organization: 'GrowthLabs'
+				'Working with Paul was a fantastic experience. He created a beautiful, functional website that has helped me connect with more clients and grow my practice significantly.',
+			name: 'Bii Edwin',
+			role: 'Mind Shifting Coach',
+			organization: 'Bii Edwin Hypnotherapy'
 		},
 		{
-			message: 'Helped us optimize SEO and performance. Traffic improved within weeks.',
-			name: 'Sofia Patel',
-			role: 'Marketing Lead',
-			organization: 'BrightWave'
+			message:
+				'Paul built a comprehensive school management system that has transformed how we operate. Teachers, students, and parents all love the platform. Highly recommended!',
+			name: 'School Administrator',
+			role: 'Director',
+			organization: 'AcerSchoolApp Partner'
 		}
 	];
-
 	// duplicate content for continuous scroll effect
 	let looped = [...reviews, ...reviews];
 </script>

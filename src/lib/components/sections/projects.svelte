@@ -6,30 +6,29 @@
 	const projects = [
 		{
 			id: 1,
-			title: 'Premium Google Dashboard',
-			description:
-				'Real-time analytics dashboard with AI-powered insights and custom visualizations',
-			tags: ['React', 'TypeScript', 'D3.js', 'TailwindCSS'],
-			image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&h=300&fit=crop',
-			link: '#',
+			title: 'Nasha Technologies business website',
+			description: 'IT and cybersecurity  firm with a focus based in Tanzania.',
+			tags: ['SvelteKit', 'Node.js', 'TailwindCSS', 'FormSpark'],
+			image: '/images/nashatech.co.tz-screenshot-responsive-mockup.webp',
+			link: 'https://nashatech.co.tz',
 			featured: true
 		},
 		{
 			id: 2,
-			title: 'E-Commerce Platform',
-			description: 'Full-stack marketplace with real-time inventory and payment integration',
-			tags: ['SvelteKit', 'Node.js', 'PostgreSQL', 'Stripe'],
-			image: 'https://images.unsplash.com/photo-1460925895917-afdab5c3c3a5?w=500&h=300&fit=crop',
-			link: '#'
+			title: 'Bii Edwin Hypno Therapist website',
+			description: 'A certified Mind Shifting Coach and Advanced Conversational Hypnotherapist',
+			tags: ['Worpress', 'PHP', 'MySQL', 'Zoho'],
+			image: '/images/biiedwin-website-screenshot-responsive-mockup.webp',
+			link: 'https://biiedwin.com'
 		},
 		{
 			id: 3,
-			title: 'AI Content Generator',
+			title: 'AcerSchoolApp School Management System',
 			description:
-				'ML-powered tool for automated content creation with natural language processing',
-			tags: ['Python', 'TensorFlow', 'React', 'FastAPI'],
-			image: 'https://images.unsplash.com/photo-1677442d019cecf8?w=500&h=300&fit=crop',
-			link: '#'
+				'A school management system that allows teachers, students, admins and parents to manage their school activities and learning easily.',
+			tags: ['Python', 'Django', 'PostgreSQL', 'TailwindCSS', 'Docker'],
+			image: '/images/acerschoolapp-screenshot-responsive-mockup.webp',
+			link: 'https://acerschoolapp.co.ke'
 		}
 	];
 
@@ -118,6 +117,8 @@
 
 							<!-- Link -->
 							<a
+								rel="noopener noreferrer nofollow"
+								target="_blank"
 								href={project.link}
 								class="group/link inline-flex items-center gap-2 font-semibold text-emerald-400 transition-all hover:gap-3"
 							>

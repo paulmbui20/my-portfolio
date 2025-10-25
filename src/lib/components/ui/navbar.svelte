@@ -43,7 +43,7 @@
 					</a>
 				{/each}
 				<a
-					href="#contact"
+					href="/contact"
 					class="rounded-lg bg-emerald-500 px-6 py-2 font-semibold text-black transition-all duration-300 hover:bg-emerald-400 hover:shadow-lg hover:shadow-emerald-500/50"
 				>
 					Let's Talk
@@ -91,7 +91,7 @@
 					</a>
 				{/each}
 				<a
-					href="#contact"
+					href="/contact"
 					on:click={() => (isOpen = false)}
 					class="block rounded-lg bg-emerald-500 px-6 py-2 text-center font-semibold text-black transition-all hover:bg-emerald-400"
 				>

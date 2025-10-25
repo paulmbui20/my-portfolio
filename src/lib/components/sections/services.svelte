@@ -51,15 +51,15 @@
 	const skills = [
 		{
 			category: 'Frontend',
-			items: ['React', 'SvelteKit', 'TypeScript', 'TailwindCSS', 'Next.js', 'Vue.js']
+			items: ['SvelteKit', 'TypeScript', 'TailwindCSS', 'JQuery', 'HTML', 'CSS']
 		},
 		{
 			category: 'Backend',
-			items: ['Node.js', 'Python', 'PostgreSQL', 'MongoDB', 'GraphQL', 'REST APIs']
+			items: ['Django', 'FastAPI', 'PostgreSQL', 'MySQL', 'Redis', 'REST APIs']
 		},
 		{
 			category: 'Tools & Platforms',
-			items: ['Git', 'Docker', 'AWS', 'Firebase', 'Vercel', 'GitHub Actions']
+			items: ['WordPress', 'Git', 'Docker', 'Render', 'Vercel', 'GitHub Actions']
 		}
 	];
 

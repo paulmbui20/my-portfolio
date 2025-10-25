@@ -1,213 +1,104 @@
 export const projects = [
 	{
-		slug: 'ecommerce-platform',
-		title: 'E-Commerce Platform',
-		shortDescription: 'Full-stack e-commerce solution with payment integration',
-		description:
-			'A comprehensive e-commerce platform built with modern technologies, featuring real-time inventory management, secure payment processing, and an intuitive admin dashboard. The platform handles thousands of transactions daily and provides seamless shopping experience across all devices.',
-		image: '🛍️',
-		gradient: 'from-purple-500 to-pink-500',
-		tech: ['SvelteKit', 'Node.js', 'MySQL', 'Stripe', 'Redis'],
+		slug: 'nasha-technologies',
+		title: 'Nasha Technologies business website',
+		shortDescription: 'IT and cybersecurity firm website',
+		description: 'IT and cybersecurity firm with a focus based in Tanzania.',
+		image: '🔐',
+		gradient: 'from-blue-500 to-cyan-500',
+		tech: ['SvelteKit', 'Node.js', 'TailwindCSS', 'FormSpark'],
 		category: 'Web Development',
-		client: 'RetailCo Kenya',
-		duration: '4 months',
+		client: 'Nasha Technologies',
+		duration: '3 months',
 		year: '2024',
-		liveUrl: 'https://example.com',
-		githubUrl: 'https://github.com/paulmbui20/ecommerce',
+		liveUrl: 'https://nashatech.co.tz',
+		githubUrl: 'https://github.com/paulmbui20/nashatech',
 		features: [
-			'Secure payment integration with Stripe and M-Pesa',
-			'Real-time inventory tracking and management',
-			'Advanced product filtering and search',
-			'Customer review and rating system',
-			'Responsive admin dashboard',
-			'Email notifications and order tracking'
+			'Modern responsive design',
+			'Contact form integration',
+			'Service showcase',
+			'SEO optimized',
+			'Fast loading performance'
 		],
 		challenges: [
-			'Implemented complex inventory synchronization across multiple warehouses',
-			'Optimized database queries to handle high traffic during flash sales',
-			'Integrated local payment methods for the Kenyan market'
+			'Created clean and professional design',
+			'Implemented secure contact form',
+			'Optimized for performance'
 		],
 		results: [
-			'300% increase in online sales within first quarter',
-			'Average page load time reduced to under 2 seconds',
-			'95% customer satisfaction rate'
+			'Professional online presence established',
+			'Increased client inquiries',
+			'Fast page load times'
 		],
-		gallery: ['🖼️', '📱', '💳', '📊']
+		gallery: ['🖼️', '📱', '💼', '📊']
 	},
 	{
-		slug: 'portfolio-cms',
-		title: 'Portfolio CMS',
-		shortDescription: 'Custom content management system for creative portfolios',
-		description:
-			'A powerful yet intuitive CMS specifically designed for creative professionals. Features drag-and-drop portfolio building, dynamic theme customization, and built-in SEO optimization. Perfect for photographers, designers, and artists who want full control over their online presence.',
-		image: '📱',
-		gradient: 'from-blue-500 to-cyan-500',
-		tech: ['PHP', 'WordPress', 'JavaScript', 'REST API', 'MySQL'],
-		category: 'CMS Development',
-		client: 'Creative Studios',
-		duration: '3 months',
+		slug: 'bii-edwin-hypnotherapist',
+		title: 'Bii Edwin Hypno Therapist website',
+		shortDescription: 'Mind Shifting Coach and Hypnotherapist website',
+		description: 'A certified Mind Shifting Coach and Advanced Conversational Hypnotherapist',
+		image: '🧠',
+		gradient: 'from-purple-500 to-pink-500',
+		tech: ['WordPress', 'PHP', 'MySQL', 'Zoho'],
+		category: 'Web Development',
+		client: 'Bii Edwin',
+		duration: '2 months',
 		year: '2023',
-		liveUrl: 'https://example.com',
-		githubUrl: 'https://github.com/paulmbui20/portfolio-cms',
+		liveUrl: 'https://biiedwin.com',
+		githubUrl: 'https://github.com/paulmbui20/biiedwin',
 		features: [
-			'Drag-and-drop portfolio builder',
-			'Multiple pre-built themes with customization',
-			'Built-in contact form and lead management',
-			'SEO optimization tools',
-			'Social media integration',
-			'Analytics dashboard'
+			'Custom WordPress theme',
+			'Appointment booking system',
+			'Blog and resources section',
+			'Client testimonials',
+			'Email marketing integration'
 		],
 		challenges: [
-			'Created flexible theme system supporting unlimited customization',
-			'Developed custom WordPress blocks for enhanced functionality',
-			'Implemented efficient image optimization pipeline'
+			'Developed custom booking functionality',
+			'Integrated Zoho CRM',
+			'Created calming, professional design'
 		],
 		results: [
-			'Used by 500+ creative professionals',
-			'Average site speed score of 95/100',
-			'40% increase in client inquiries for users'
+			'Streamlined appointment process',
+			'Increased client bookings',
+			'Professional brand presence'
 		],
 		gallery: ['🎨', '✏️', '🖼️', '📈']
 	},
 	{
-		slug: 'analytics-dashboard',
-		title: 'Analytics Dashboard',
-		shortDescription: 'Real-time data visualization dashboard',
+		slug: 'acerschoolapp',
+		title: 'AcerSchoolApp School Management System',
+		shortDescription: 'Comprehensive school management platform',
 		description:
-			'An advanced analytics dashboard that transforms complex data into actionable insights. Features real-time data processing, interactive charts, customizable reports, and predictive analytics. Designed for businesses that need to make data-driven decisions quickly.',
-		image: '📊',
-		gradient: 'from-orange-500 to-red-500',
-		tech: ['Python', 'JavaScript', 'Tailwind', 'Chart.js', 'PostgreSQL'],
-		category: 'Data Analytics',
-		client: 'TechCorp Analytics',
-		duration: '5 months',
-		year: '2023',
-		liveUrl: 'https://example.com',
-		githubUrl: 'https://github.com/paulmbui20/analytics',
-		features: [
-			'Real-time data processing and visualization',
-			'Interactive charts and graphs',
-			'Custom report builder',
-			'Predictive analytics with ML models',
-			'Multi-user access with role-based permissions',
-			'Export to PDF, Excel, and CSV'
-		],
-		challenges: [
-			'Optimized real-time data processing for 10M+ data points',
-			'Implemented WebSocket connections for live updates',
-			'Created custom ML models for trend prediction'
-		],
-		results: [
-			'70% reduction in report generation time',
-			'Handles 10 million data points in real-time',
-			'99.9% uptime over 12 months'
-		],
-		gallery: ['📈', '📉', '🎯', '💹']
-	},
-	{
-		slug: 'seo-optimizer',
-		title: 'SEO Optimizer Tool',
-		shortDescription: 'Automated SEO analysis and optimization toolkit',
-		description:
-			'A comprehensive SEO toolkit that automates website analysis, keyword research, competitor tracking, and provides actionable recommendations. Helps businesses improve their search engine rankings and drive organic traffic.',
-		image: '🚀',
+			'A school management system that allows teachers, students, admins and parents to manage their school activities and learning easily.',
+		image: '🎓',
 		gradient: 'from-green-500 to-emerald-500',
-		tech: ['Python', 'Shopify', 'APIs', 'Bootstrap', 'MongoDB'],
-		category: 'SEO Tools',
-		client: 'Digital Marketing Agency',
-		duration: '3 months',
-		year: '2024',
-		liveUrl: 'https://example.com',
-		githubUrl: 'https://github.com/paulmbui20/seo-tool',
-		features: [
-			'Automated website SEO audit',
-			'Keyword research and tracking',
-			'Competitor analysis',
-			'Backlink monitoring',
-			'Site speed optimization tips',
-			'Content optimization suggestions'
-		],
-		challenges: [
-			'Integrated multiple SEO APIs for comprehensive analysis',
-			'Developed intelligent recommendation engine',
-			'Created automated reporting system'
-		],
-		results: [
-			'Clients saw average 150% increase in organic traffic',
-			'Reduced manual SEO audit time by 80%',
-			'Tracked over 50,000 keywords across 200+ websites'
-		],
-		gallery: ['🔍', '📊', '⚡', '🎯']
-	},
-	{
-		slug: 'restaurant-booking',
-		title: 'Restaurant Booking System',
-		shortDescription: 'Modern reservation platform for restaurants',
-		description:
-			'A sleek reservation system that streamlines restaurant bookings, table management, and customer relationships. Features real-time availability, automated confirmations, and integration with POS systems.',
-		image: '🍽️',
-		gradient: 'from-yellow-500 to-orange-500',
-		tech: ['React', 'Node.js', 'MongoDB', 'Socket.io', 'Twilio'],
+		tech: ['Python', 'Django', 'PostgreSQL', 'TailwindCSS', 'Docker'],
 		category: 'Web Application',
-		client: 'Nairobi Restaurants Group',
-		duration: '4 months',
-		year: '2023',
-		liveUrl: 'https://example.com',
-		githubUrl: 'https://github.com/paulmbui20/restaurant',
-		features: [
-			'Real-time table availability',
-			'SMS and email confirmations',
-			'Customer database and preferences',
-			'Waitlist management',
-			'Integration with POS systems',
-			'Analytics and reporting'
-		],
-		challenges: [
-			'Implemented real-time seat allocation algorithm',
-			'Created efficient waitlist and queueing system',
-			'Integrated SMS notifications via Twilio'
-		],
-		results: [
-			'60% reduction in no-shows',
-			'45% increase in table turnover',
-			'Used by 15 restaurants in Nairobi'
-		],
-		gallery: ['📅', '🍴', '📱', '💼']
-	},
-	{
-		slug: 'fitness-tracker',
-		title: 'Fitness Tracker App',
-		shortDescription: 'Comprehensive fitness and wellness application',
-		description:
-			'A full-featured fitness tracking application that helps users monitor workouts, nutrition, and progress. Includes workout plans, meal tracking, progress photos, and community features.',
-		image: '💪',
-		gradient: 'from-red-500 to-pink-500',
-		tech: ['React Native', 'Firebase', 'Node.js', 'TensorFlow', 'Stripe'],
-		category: 'Mobile App',
-		client: 'FitLife Kenya',
+		client: 'Educational Institutions',
 		duration: '6 months',
-		year: '2024',
-		liveUrl: 'https://example.com',
-		githubUrl: 'https://github.com/paulmbui20/fitness',
+		year: '2023',
+		liveUrl: 'https://acerschoolapp.co.ke',
+		githubUrl: 'https://github.com/paulmbui20/acerschoolapp',
 		features: [
-			'Custom workout plan generator',
-			'Nutrition tracking with barcode scanner',
-			'Progress photos and measurements',
-			'Social community features',
-			'Video exercise library',
-			'AI-powered form correction'
+			'Student and teacher management',
+			'Grade and attendance tracking',
+			'Parent portal access',
+			'Timetable management',
+			'Communication tools',
+			'Report generation'
 		],
 		challenges: [
-			'Implemented ML models for exercise form analysis',
-			'Optimized app for offline functionality',
-			'Created engaging social features'
+			'Built scalable multi-tenant architecture',
+			'Implemented role-based access control',
+			'Created comprehensive reporting system'
 		],
 		results: [
-			'10,000+ active users in first 3 months',
-			'4.8/5 star rating on app stores',
-			'85% user retention rate'
+			'Used by multiple schools in Kenya',
+			'Streamlined administrative tasks',
+			'Improved parent-teacher communication'
 		],
-		gallery: ['🏃', '🥗', '📸', '📊']
+		gallery: ['📚', '📊', '👨‍🏫', '📱']
 	}
 ];
 
