@@ -32,7 +32,12 @@ export const projects = [
 			'Increased client inquiries',
 			'Fast page load times'
 		],
-		gallery: ['🖼️', '📱', '💼', '📊']
+		gallery: [
+			'/images/nashatech/nahstech.co.tz-why-us-screenshot.png',
+			'/images/nashatech/nashatech.co.tz-footer-screenshot.png',
+			'/images/nashatech/nashatech.co.tz-contact-us-page-screenshot.webp',
+			'/images/nashatech/nashatech.co.tz-services-screenshot.webp'
+		]
 	},
 	{
 		slug: 'bii-edwin-hypnotherapist',
@@ -65,7 +70,14 @@ export const projects = [
 			'Increased client bookings',
 			'Professional brand presence'
 		],
-		gallery: ['🎨', '✏️', '🖼️', '📈']
+		gallery: [
+			'/images/biiedwin-website-screenshot-responsive-mockup.webp',
+			'/images/biiedwin/biiedwin-about-page-screenshot-responsive-mockup.png',
+			'/images/biiedwin/biiedwin-blog-page-screenshot-responsive-mockup.png',
+			'/images/biiedwin/biiedwin-contact-page-screenshot-responsive-mockup.png',
+			'/images/biiedwin/biiedwin-home-page-screenshot-responsive-mockup.png',
+			'/images/biiedwin/biiedwin-resources-page-screenshot-responsive-mockup.webp'
+		]
 	},
 	{
 		slug: 'acerschoolapp',
@@ -100,7 +112,7 @@ export const projects = [
 			'Streamlined administrative tasks',
 			'Improved parent-teacher communication'
 		],
-		gallery: ['📚', '📊', '👨‍🏫', '📱']
+		gallery: []
 	}
 ];
 

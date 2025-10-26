@@ -13,14 +13,14 @@
 			name: 'Bii Edwin',
 			role: 'Mind Shifting Coach',
 			organization: 'Bii Edwin Hypnotherapy'
-		},
-		{
-			message:
-				'Paul built a comprehensive school management system that has transformed how we operate. Teachers, students, and parents all love the platform. Highly recommended!',
-			name: 'School Administrator',
-			role: 'Director',
-			organization: 'AcerSchoolApp Partner'
 		}
+		// {
+		// 	message:
+		// 		'Paul built a comprehensive school management system that has transformed how we operate. Teachers, students, and parents all love the platform. Highly recommended!',
+		// 	name: 'School Administrator',
+		// 	role: 'Principal',
+		// 	organization: 'Sokoke Boys High School'
+		// }
 	];
 	// duplicate content for continuous scroll effect
 	let looped = [...reviews, ...reviews];

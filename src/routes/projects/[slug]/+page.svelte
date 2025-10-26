@@ -310,7 +310,13 @@
 									class="absolute inset-0 bg-gradient-to-br {relatedProject.gradient} opacity-0 transition-opacity group-hover:opacity-10"
 								></div>
 								<div class="relative z-10 p-6">
-									<div class="mb-4 text-5xl">{relatedProject.image}</div>
+									<div class="mb-4 text-5xl">
+										<img
+											src={relatedProject.image}
+											alt={relatedProject.title}
+											class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+										/>
+									</div>
 									<h3 class="mb-2 text-xl font-bold">{relatedProject.title}</h3>
 									<p class="line-clamp-2 text-sm text-slate-400">
 										{relatedProject.shortDescription}

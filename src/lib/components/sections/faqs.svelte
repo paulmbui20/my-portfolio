@@ -4,13 +4,13 @@
 			id: 1,
 			question: 'What technologies do you specialize in?',
 			answer:
-				'I specialize in modern full-stack development with React, SvelteKit, Node.js, and Python. I work with databases like PostgreSQL and MongoDB, and deploy on cloud platforms like AWS and Firebase.'
+				'I specialize in modern full-stack development with SvelteKit, Django and FastAPI I work with databases like PostgreSQL, MySQL and Redis, and deploy on cloud platforms like AWS and Render, Railway, and Vercel.'
 		},
 		{
 			id: 2,
 			question: 'How long does a typical project take?',
 			answer:
-				'Project timelines vary based on scope and complexity. Simple websites take 2-4 weeks, while complex applications may take 2-6 months. I provide detailed estimates after an initial consultation.'
+				'Project timelines vary based on scope and complexity. Simple websites take 1-4 weeks, while complex applications may take 2-6 months. I provide detailed estimates after an initial consultation.'
 		},
 		{
 			id: 3,

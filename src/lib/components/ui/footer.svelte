@@ -39,21 +39,48 @@
 		<div>
 			<h4 class="mb-4 font-semibold text-emerald-400">Social</h4>
 			<ul class="space-y-2 text-sm text-gray-400">
-				<li><a href="#" class="transition-colors hover:text-emerald-400">Twitter</a></li>
-				<li><a href="#" class="transition-colors hover:text-emerald-400">LinkedIn</a></li>
-				<li><a href="#" class="transition-colors hover:text-emerald-400">GitHub</a></li>
-				<li><a href="#" class="transition-colors hover:text-emerald-400">Email</a></li>
+				<li>
+					<a
+						href="https://wa.me/254746544646"
+						title="WhatsApp"
+						rel="noreferrer noopener nofollow"
+						target="_blank">WhatsApp</a
+					>
+				</li>
+				<li>
+					<a
+						title="LinkedIn"
+						rel="noreferrer noopener nofollow"
+						target="_blank"
+						href="https://linkedin.com/in/paulmbui"
+						class="transition-colors hover:text-emerald-400">LinkedIn</a
+					>
+				</li>
+				<li>
+					<a
+						href="https://github.com/paulmbui20"
+						title="GitHub"
+						target="_blank"
+						rel="noreferrer noopener nofollow"
+						class="transition-colors hover:text-emerald-400">GitHub</a
+					>
+				</li>
+				<li>
+					<a
+						title="Email"
+						target="_blank"
+						rel="noreferrer noopener nofollow"
+						href="mailto:hello@paulmbui.co.ke"
+						class="transition-colors hover:text-emerald-400">Email</a
+					>
+				</li>
 			</ul>
 		</div>
 	</div>
 
 	<div
-		class="flex flex-col items-center justify-between border-t border-emerald-500/20 pt-8 text-sm text-gray-500 md:flex-row"
+		class="flex flex-col items-center justify-around border-t border-emerald-500/20 pt-8 text-sm text-gray-500 md:flex-row"
 	>
-		<p>&copy; 2024 Paul Mbui. All rights reserved.</p>
-		<div class="mt-4 flex gap-6 md:mt-0">
-			<a href="#" class="transition-colors hover:text-emerald-400">Privacy Policy</a>
-			<a href="#" class="transition-colors hover:text-emerald-400">Terms of Service</a>
-		</div>
+		<p class="text-centre">&copy; 2024 Paul Mbui. All rights reserved.</p>
 	</div>
 </div>
