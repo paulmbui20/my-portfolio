@@ -55,8 +55,8 @@
 		class="pointer-events-none absolute inset-0 overflow-hidden"
 		style="transform: translateY({scrollY * 0.5}px)"
 	>
-		<div class="absolute top-20 right-10 h-96 w-96 rounded-full bg-emerald-500/10 blur-3xl" />
-		<div class="absolute bottom-0 left-0 h-80 w-80 rounded-full bg-emerald-500/5 blur-3xl" />
+		<div class="absolute top-20 right-10 h-96 w-96 rounded-full bg-primary-500/10 blur-3xl" />
+		<div class="absolute bottom-0 left-0 h-80 w-80 rounded-full bg-primary-500/5 blur-3xl" />
 	</div>
 
 	<!-- HERO GRID: Name full-width on large screens, content rows beneath -->
@@ -73,7 +73,7 @@
 				<span class="mt-2 inline-block text-xl font-semibold md:text-2xl">
 					<span class="text-gray-300">-</span>
 					<!-- visual typed text -->
-					<span aria-hidden="true" class="ml-3 text-emerald-400"
+					<span aria-hidden="true" class="ml-3 text-primary-400"
 						>{typed}<span class="blinker ml-1 inline-block">▍</span></span
 					>
 
@@ -90,7 +90,7 @@
 			<!-- LEFT: image card -->
 			<div class="hidden justify-center md:flex md:justify-start">
 				<div
-					class="relative h-96 w-80 overflow-hidden rounded-3xl border border-emerald-500/20 bg-gray-900 shadow-xl shadow-emerald-500/10"
+					class="relative h-96 w-80 overflow-hidden rounded-3xl border border-primary-500/20 bg-gray-900 shadow-xl shadow-primary-500/10"
 				>
 					<!-- supply your image path -->
 					<img src="/images/me.webp" alt="Paul Mbui" class="h-full w-full object-cover" />
@@ -100,16 +100,16 @@
 
 					<!-- floating badge -->
 					<div
-						class="absolute right-3 bottom-3 rounded-md border border-emerald-500/40 bg-black/60 px-3 py-2 backdrop-blur-sm"
+						class="absolute right-3 bottom-3 rounded-md border border-primary-500/40 bg-black/60 px-3 py-2 backdrop-blur-sm"
 					>
-						<p class="text-xs font-semibold text-emerald-400">✓ Available for Work</p>
+						<p class="text-xs font-semibold text-primary-400">✓ Available for Work</p>
 					</div>
 				</div>
 			</div>
 
 			<!-- RIGHT: subheading + description + CTAs -->
 			<div class="space-y-6">
-				<p class="text-sm font-semibold tracking-wider text-emerald-400 uppercase">
+				<p class="text-sm font-semibold tracking-wider text-primary-400 uppercase">
 					Product-focused Engineer
 				</p>
 
@@ -125,15 +125,15 @@
 
 				<div class="flex flex-wrap gap-4">
 					<a
-						href="#contact"
-						class="inline-block rounded-lg bg-emerald-500 px-6 py-3 font-semibold text-black transition-all duration-300 hover:bg-emerald-400 hover:shadow-lg hover:shadow-emerald-500/50"
+						href="/contact"
+						class="inline-block rounded-lg bg-primary-500 px-6 py-3 font-semibold text-black transition-all duration-300 hover:bg-primary-400 hover:shadow-lg hover:shadow-primary-500/50"
 					>
 						Start a Project
 					</a>
 
 					<a
 						href="#projects"
-						class="inline-block rounded-lg border border-emerald-500 px-6 py-3 font-semibold text-emerald-400 transition-all duration-300 hover:bg-emerald-500/10"
+						class="inline-block rounded-lg border border-primary-500 px-6 py-3 font-semibold text-primary-400 transition-all duration-300 hover:bg-primary-500/10"
 					>
 						View Portfolio
 					</a>
@@ -142,15 +142,15 @@
 				<!-- small metrics row (optional) -->
 				<div class="flex gap-8 pt-2 text-sm text-gray-400">
 					<div>
-						<p class="text-lg font-bold text-emerald-400">10+</p>
+						<p class="text-lg font-bold text-primary-400">10+</p>
 						<p class="text-xs">Projects</p>
 					</div>
 					<div>
-						<p class="text-lg font-bold text-emerald-400">5+</p>
+						<p class="text-lg font-bold text-primary-400">5+</p>
 						<p class="text-xs">Clients</p>
 					</div>
 					<div>
-						<p class="text-lg font-bold text-emerald-400">3+</p>
+						<p class="text-lg font-bold text-primary-400">3+</p>
 						<p class="text-xs">Years</p>
 					</div>
 				</div>
