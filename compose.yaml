@@ -12,9 +12,9 @@ services:
       - .env                   # optional .env file (place NODE_ENV, PORT, etc. here)
     environment:
       NODE_ENV: ${NODE_ENV:-production}
-      PORT: ${PORT:-3000}
+      PORT: ${PORT:-3003}
     ports:
-      - "${PORT:-3000}:3000"
+      - "${PORT:-3003}:3000"
     restart: unless-stopped
     logging:
       driver: "json-file"
@@ -25,7 +25,7 @@ services:
     # If your runtime image doesn't include wget/curl, either install it in the image or
     # remove/comment the healthcheck below.
     healthcheck:
-     test: ["CMD-SHELL", "wget -qO- --timeout=2 http://localhost:${PORT:-3000}/ || exit 1"]
+     test: ["CMD-SHELL", "wget -qO- --timeout=2 http://localhost:${PORT:-3003}/ || exit 1"]
      interval: 30s
      timeout: 5s
      retries: 3
