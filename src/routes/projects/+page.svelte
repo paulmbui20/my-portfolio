@@ -95,7 +95,11 @@
 						<div class="relative z-10 p-6">
 							<!-- Project Icon -->
 							<div class="mb-4 text-5xl transition-transform group-hover:scale-110">
-								{project.image}
+								<img
+									src={project.image}
+									alt={project.title}
+									class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+								/>
 							</div>
 
 							<!-- Category Badge -->

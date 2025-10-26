@@ -159,6 +159,8 @@
 				<div class="grid gap-6 md:grid-cols-2">
 					{#each skills as skill, i}
 						<div
+							role="button"
+							tabindex="0"
 							class="group cursor-pointer rounded-xl border border-slate-700/50 bg-slate-800/30 p-6 backdrop-blur-sm transition-all hover:border-primary-500/50"
 							on:mouseenter={() => (activeSkill = i)}
 							on:mouseleave={() => (activeSkill = -1)}

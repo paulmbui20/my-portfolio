@@ -235,7 +235,7 @@
 									Sending...
 								{:else}
 									Send Message
-									<span aria-hidden>→</span>
+									<span aria-hidden="true">→</span>
 								{/if}
 							</button>
 						</div>
@@ -248,12 +248,18 @@
 
 {#if showModal}
 	<div
+		tabindex="0"
 		class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-6 backdrop-blur-sm"
 		on:click={closeModal}
+		on:keydown={(e) => e.key === 'Escape' && closeModal()}
+		role="dialog"
+		aria-modal="true"
 	>
 		<div
 			class="surface w-full max-w-md rounded-2xl p-8 shadow-2xl"
 			on:click|stopPropagation
+			on:keydown|stopPropagation
+			role="document"
 			transition:scale={{ duration: 240 }}
 		>
 			<div class="text-center">

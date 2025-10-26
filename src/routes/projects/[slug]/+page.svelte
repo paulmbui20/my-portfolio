@@ -129,7 +129,13 @@
 						<div
 							class="relative flex h-full w-full items-center justify-center rounded-xl bg-slate-900"
 						>
-							<div class="text-9xl">{project.image}</div>
+							<div class="text-9xl">
+								<img
+									src={project.image}
+									alt={project.title}
+									class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+								/>
+							</div>
 						</div>
 					</div>
 
@@ -230,7 +236,13 @@
 										<div
 											class="group flex aspect-video items-center justify-center rounded-xl border border-slate-700/50 bg-slate-800/30 transition-all hover:border-primary-500/50"
 										>
-											<div class="text-6xl transition-transform group-hover:scale-110">{item}</div>
+											<div class="text-6xl transition-transform group-hover:scale-110">
+												<img
+													src={item}
+													alt="Gallery Item"
+													class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+												/>
+											</div>
 										</div>
 									{/each}
 								</div>

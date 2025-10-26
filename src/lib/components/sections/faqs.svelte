@@ -66,7 +66,7 @@
 
 <section class="relative bg-black px-6 py-20">
 	<div class="pointer-events-none absolute inset-0 overflow-hidden">
-		<div class="absolute top-1/4 right-10 h-80 w-80 rounded-full bg-emerald-500/5 blur-3xl" />
+		<div class="absolute top-1/4 right-10 h-80 w-80 rounded-full bg-emerald-500/5 blur-3xl"></div>
 	</div>
 
 	<div class="relative z-10 mx-auto max-w-4xl">

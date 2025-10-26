@@ -10,7 +10,7 @@
 			description: 'IT and cybersecurity  firm with a focus based in Tanzania.',
 			tags: ['SvelteKit', 'Node.js', 'TailwindCSS', 'FormSpark'],
 			image: '/images/nashatech.co.tz-screenshot-responsive-mockup.webp',
-			link: 'https://nashatech.co.tz',
+			link: '/projects/nasha-technologies',
 			featured: true
 		},
 		{
@@ -19,7 +19,7 @@
 			description: 'A certified Mind Shifting Coach and Advanced Conversational Hypnotherapist',
 			tags: ['Worpress', 'PHP', 'MySQL', 'Zoho'],
 			image: '/images/biiedwin-website-screenshot-responsive-mockup.webp',
-			link: 'https://biiedwin.com'
+			link: '/projects/bii-edwin-hypnotherapist'
 		},
 		{
 			id: 3,
@@ -28,7 +28,7 @@
 				'A school management system that allows teachers, students, admins and parents to manage their school activities and learning easily.',
 			tags: ['Python', 'Django', 'PostgreSQL', 'TailwindCSS', 'Docker'],
 			image: '/images/acerschoolapp-screenshot-responsive-mockup.webp',
-			link: 'https://acerschoolapp.co.ke'
+			link: '/projects/acerschoolapp'
 		}
 	];
 
@@ -49,7 +49,7 @@
 
 <section id="projects" class="relative bg-black px-6 py-20">
 	<div class="pointer-events-none absolute inset-0 overflow-hidden">
-		<div class="absolute top-0 left-20 h-72 w-72 rounded-full bg-emerald-500/5 blur-3xl" />
+		<div class="absolute top-0 left-20 h-72 w-72 rounded-full bg-emerald-500/5 blur-3xl"></div>
 	</div>
 
 	<div class="relative z-10 mx-auto max-w-6xl">
@@ -76,7 +76,7 @@
 					style="transition: all 0.6s ease-out 0.{project.id * 100}ms"
 				>
 					<!-- Background -->
-					<div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-950" />
+					<div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-950"></div>
 
 					<div class="relative z-10 flex flex-col md:flex-row">
 						<!-- Image -->
@@ -88,7 +88,7 @@
 							/>
 							<div
 								class="absolute inset-0 bg-gradient-to-r from-black via-black/50 to-transparent"
-							/>
+							></div>
 						</div>
 
 						<!-- Content -->
@@ -117,8 +117,6 @@
 
 							<!-- Link -->
 							<a
-								rel="noopener noreferrer nofollow"
-								target="_blank"
 								href={project.link}
 								class="group/link inline-flex items-center gap-2 font-semibold text-emerald-400 transition-all hover:gap-3"
 							>
