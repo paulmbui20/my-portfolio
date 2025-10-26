@@ -127,26 +127,5 @@
 				</div>
 			{/each}
 		</div>
-
-		<!-- Final CTA -->
-		<div
-			class="mt-16 rounded-lg border border-emerald-500/30 bg-gradient-to-r from-emerald-500/5 to-black/50 p-8 text-center"
-		>
-			<p class="mb-4 text-gray-400">Still have questions?</p>
-			<a
-				href="mailto:your.email@example.com"
-				class="inline-flex items-center gap-2 font-semibold text-emerald-400 transition-colors hover:text-emerald-300"
-			>
-				Get in touch with me
-				<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M13 7l5 5m0 0l-5 5m5-5H6"
-					/>
-				</svg>
-			</a>
-		</div>
 	</div>
 </section>

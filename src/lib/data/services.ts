@@ -17,10 +17,10 @@ export const services = [
 			'API integration',
 			'Database design and management'
 		],
-		technologies: ['SvelteKit', 'React', 'Node.js', 'TailwindCSS', 'MySQL', 'MongoDB'],
+		technologies: ['SvelteKit', 'Django', 'FastAPI', 'TailwindCSS', 'MySQL', 'PostgreSQL', 'Redis'],
 		pricing: {
-			starting: 'KSh 50,000',
-			timeline: '2-8 weeks'
+			starting: 'KSh 15,000',
+			timeline: '1-4 weeks'
 		},
 		process: [
 			{ step: 'Discovery', description: 'Understanding your requirements and goals' },
@@ -65,8 +65,8 @@ export const services = [
 		],
 		technologies: ['Shopify', 'WooCommerce', 'SvelteKit', 'Stripe', 'M-Pesa API'],
 		pricing: {
-			starting: 'KSh 100,000',
-			timeline: '4-12 weeks'
+			starting: 'KSh 30,000',
+			timeline: '2-6 weeks'
 		},
 		process: [
 			{ step: 'Consultation', description: 'Understanding your products and target market' },
@@ -110,8 +110,8 @@ export const services = [
 		],
 		technologies: ['WordPress', 'Custom CMS', 'PHP', 'MySQL', 'REST API'],
 		pricing: {
-			starting: 'KSh 60,000',
-			timeline: '3-8 weeks'
+			starting: 'KSh 40,000',
+			timeline: '2-8 weeks'
 		},
 		process: [
 			{ step: 'Requirements', description: 'Defining content types and workflows' },
@@ -155,7 +155,7 @@ export const services = [
 		],
 		technologies: ['Google Analytics', 'Search Console', 'SEO Tools', 'Schema Markup'],
 		pricing: {
-			starting: 'KSh 40,000/month',
+			starting: 'KSh 10,000/month',
 			timeline: 'Ongoing'
 		},
 		process: [
@@ -200,7 +200,7 @@ export const services = [
 		],
 		technologies: ['Monitoring Tools', 'Backup Solutions', 'Security Plugins', 'CDN'],
 		pricing: {
-			starting: 'KSh 15,000/month',
+			starting: 'KSh 10,000/month',
 			timeline: 'Monthly subscription'
 		},
 		process: [
@@ -245,7 +245,7 @@ export const services = [
 		],
 		technologies: ['Various based on needs'],
 		pricing: {
-			starting: 'KSh 10,000/hour',
+			starting: 'KSh 1,000/hour',
 			timeline: 'Flexible'
 		},
 		process: [

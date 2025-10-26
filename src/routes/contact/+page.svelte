@@ -35,7 +35,6 @@
 	];
 
 	onMount(() => {
-		// simple reveal for elements above the fold
 		isVisible = true;
 	});
 
@@ -95,12 +94,12 @@
 	<section class="px-6 py-14" aria-labelledby="contact-heading">
 		<div class="mx-auto max-w-6xl">
 			<div class="grid gap-12 lg:grid-cols-5">
-				<!-- Contact Info (enter-down) -->
-				<div class="enter-down space-y-8 lg:col-span-2">
-					<h2 id="contact-heading" class="text-2xl font-bold text-primary md:text-3xl">
+				<!-- Contact Info -->
+				<div class="space-y-8 lg:col-span-2">
+					<h2 id="contact-heading" class="text-2xl font-bold text-primary-500 md:text-3xl">
 						Get In Touch
 					</h2>
-					<p class="max-w-xl text-secondary">
+					<p class="max-w-xl text-secondary-400">
 						I'm always open to discussing new projects, creative ideas, or opportunities to be part
 						of your vision. Reach out through any channel below.
 					</p>
@@ -111,54 +110,72 @@
 								href={info.link}
 								target={info.link.startsWith('http') ? '_blank' : '_self'}
 								rel={info.link.startsWith('http') ? 'noopener noreferrer' : ''}
-								class="group surface flex items-center gap-4 rounded-xl p-4 transition-transform hover:translate-y-[-4px]"
-								style="border:1px solid rgba(255,255,255,0.02)"
+								class="group flex items-center gap-4 rounded-xl border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent p-5 shadow-lg backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary-500/50 hover:shadow-primary-500/20"
 								in:fly={{ x: -30, delay: 200 + i * 80 }}
 							>
-								<div class="text-2xl">{info.icon}</div>
+								<div
+									class="flex h-12 w-12 items-center justify-center rounded-lg bg-primary-500/10 text-2xl transition-transform duration-300 group-hover:scale-110 group-hover:bg-primary-500/20"
+								>
+									{info.icon}
+								</div>
 								<div>
-									<div class="text-sm text-secondary">{info.label}</div>
-									<div class="font-medium text-primary group-hover:text-accent">{info.value}</div>
+									<div class="text-sm font-medium text-secondary-400">{info.label}</div>
+									<div
+										class="font-semibold text-white transition-colors group-hover:text-primary-400"
+									>
+										{info.value}
+									</div>
 								</div>
 							</a>
 						{/each}
 					</div>
 
-					<div class="enter-down pt-6" in:fly={{ x: -30, delay: 650 }}>
-						<h3 class="mb-3 font-semibold">Follow Me</h3>
+					<div class="pt-6" in:fly={{ x: -30, delay: 650 }}>
+						<h3 class="mb-4 font-semibold text-primary-400">Follow Me</h3>
 						<div class="flex gap-3">
 							<a
 								href="https://github.com/paulmbui20"
 								target="_blank"
 								rel="noopener noreferrer"
-								class="surface flex h-11 w-11 items-center justify-center rounded-full">💻</a
+								class="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-gradient-to-br from-white/5 to-transparent text-xl backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary-500/50 hover:bg-primary-500/10 hover:shadow-lg hover:shadow-primary-500/20"
+								aria-label="GitHub"
 							>
+								💻
+							</a>
 							<a
 								href="https://linkedin.com/in/paulmbui"
 								target="_blank"
 								rel="noopener noreferrer"
-								class="surface flex h-11 w-11 items-center justify-center rounded-full">🔗</a
+								class="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-gradient-to-br from-white/5 to-transparent text-xl backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent-500/50 hover:bg-accent-500/10 hover:shadow-lg hover:shadow-accent-500/20"
+								aria-label="LinkedIn"
 							>
+								🔗
+							</a>
 							<a
 								href="https://twitter.com/paulmbui"
 								target="_blank"
 								rel="noopener noreferrer"
-								class="surface flex h-11 w-11 items-center justify-center rounded-full">🐦</a
+								class="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-gradient-to-br from-white/5 to-transparent text-xl backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary-500/50 hover:bg-primary-500/10 hover:shadow-lg hover:shadow-primary-500/20"
+								aria-label="Twitter"
 							>
+								🐦
+							</a>
 						</div>
 					</div>
 				</div>
 
-				<!-- Contact Form (enter-up, over the fold friendly) -->
+				<!-- Contact Form -->
 				<div class="lg:col-span-3" id="contact-form">
-					<form on:submit={handleSubmit} class="enter-up space-y-6" in:fly={{ x: 30, delay: 200 }}>
-						<div class="surface space-y-6 border-primary p-8 backdrop-blur-sm">
-							<h3 class="text-2xl font-bold">Send Me a Message</h3>
+					<form on:submit={handleSubmit} class="space-y-6" in:fly={{ x: 30, delay: 200 }}>
+						<div
+							class="space-y-6 rounded-2xl border border-primary-500/20 bg-gradient-to-br from-white/[0.03] to-transparent p-8 shadow-2xl backdrop-blur-sm"
+						>
+							<h3 class="text-2xl font-bold text-primary-400">Send Me a Message</h3>
 
 							<div class="grid gap-6 md:grid-cols-2">
 								<div>
-									<label for="name" class="mb-2 block text-sm font-medium text-secondary"
-										>Your Name</label
+									<label for="name" class="mb-2 block text-sm font-semibold text-secondary-300"
+										>Your Name <span class="text-primary-400">*</span></label
 									>
 									<input
 										id="name"
@@ -166,42 +183,42 @@
 										bind:value={formData.name}
 										required
 										placeholder="John Doe"
-										class="w-full rounded-lg border border-transparent bg-[rgba(255,255,255,0.02)] px-4 py-3 text-white placeholder-[rgba(255,255,255,0.35)] transition-all focus:ring-2 focus:outline-none"
+										class="w-full rounded-lg border border-white/10 bg-white/[0.03] px-4 py-3.5 text-white placeholder-secondary-500 shadow-sm backdrop-blur-sm transition-all duration-300 focus:border-primary-500 focus:bg-white/[0.05] focus:shadow-lg focus:ring-2 focus:shadow-primary-500/20 focus:ring-primary-500/50 focus:outline-none"
 									/>
 								</div>
 
 								<div>
-									<label for="phone" class="mb-2 block text-sm font-medium text-secondary"
-										>Your Phone Number</label
+									<label for="phone" class="mb-2 block text-sm font-semibold text-secondary-300"
+										>Phone Number <span class="text-primary-400">*</span></label
 									>
 									<input
 										id="phone"
 										type="tel"
 										bind:value={formData.phone}
 										required
-										placeholder="123-456-7890"
-										class="w-full rounded-lg border border-transparent bg-[rgba(255,255,255,0.02)] px-4 py-3 text-white placeholder-[rgba(255,255,255,0.35)] transition-all focus:ring-2 focus:outline-none"
-									/>
-								</div>
-
-								<div>
-									<label for="email" class="mb-2 block text-sm font-medium text-secondary"
-										>Your Email</label
-									>
-									<input
-										id="email"
-										type="email"
-										bind:value={formData.email}
-										required
-										placeholder="john@example.com"
-										class="w-full rounded-lg border border-transparent bg-[rgba(255,255,255,0.02)] px-4 py-3 text-white placeholder-[rgba(255,255,255,0.35)] transition-all focus:ring-2 focus:outline-none"
+										placeholder="+254 123 456 789"
+										class="w-full rounded-lg border border-white/10 bg-white/[0.03] px-4 py-3.5 text-white placeholder-secondary-500 shadow-sm backdrop-blur-sm transition-all duration-300 focus:border-primary-500 focus:bg-white/[0.05] focus:shadow-lg focus:ring-2 focus:shadow-primary-500/20 focus:ring-primary-500/50 focus:outline-none"
 									/>
 								</div>
 							</div>
 
 							<div>
-								<label for="subject" class="mb-2 block text-sm font-medium text-secondary"
-									>Subject</label
+								<label for="email" class="mb-2 block text-sm font-semibold text-secondary-300"
+									>Your Email <span class="text-primary-400">*</span></label
+								>
+								<input
+									id="email"
+									type="email"
+									bind:value={formData.email}
+									required
+									placeholder="john@example.com"
+									class="w-full rounded-lg border border-white/10 bg-white/[0.03] px-4 py-3.5 text-white placeholder-secondary-500 shadow-sm backdrop-blur-sm transition-all duration-300 focus:border-primary-500 focus:bg-white/[0.05] focus:shadow-lg focus:ring-2 focus:shadow-primary-500/20 focus:ring-primary-500/50 focus:outline-none"
+								/>
+							</div>
+
+							<div>
+								<label for="subject" class="mb-2 block text-sm font-semibold text-secondary-300"
+									>Subject <span class="text-primary-400">*</span></label
 								>
 								<input
 									id="subject"
@@ -209,13 +226,13 @@
 									bind:value={formData.subject}
 									required
 									placeholder="Project Inquiry"
-									class="w-full rounded-lg border border-transparent bg-[rgba(255,255,255,0.02)] px-4 py-3 text-white placeholder-[rgba(255,255,255,0.35)] transition-all focus:ring-2 focus:outline-none"
+									class="w-full rounded-lg border border-white/10 bg-white/[0.03] px-4 py-3.5 text-white placeholder-secondary-500 shadow-sm backdrop-blur-sm transition-all duration-300 focus:border-primary-500 focus:bg-white/[0.05] focus:shadow-lg focus:ring-2 focus:shadow-primary-500/20 focus:ring-primary-500/50 focus:outline-none"
 								/>
 							</div>
 
 							<div>
-								<label for="message" class="mb-2 block text-sm font-medium text-secondary"
-									>Message</label
+								<label for="message" class="mb-2 block text-sm font-semibold text-secondary-300"
+									>Message <span class="text-primary-400">*</span></label
 								>
 								<textarea
 									id="message"
@@ -223,20 +240,31 @@
 									required
 									rows="6"
 									placeholder="Tell me about your project..."
-									class="w-full resize-none rounded-lg border border-transparent bg-[rgba(255,255,255,0.02)] px-4 py-3 text-white placeholder-[rgba(255,255,255,0.35)] transition-all focus:ring-2 focus:outline-none"
+									class="w-full resize-none rounded-lg border border-white/10 bg-white/[0.03] px-4 py-3.5 text-white placeholder-secondary-500 shadow-sm backdrop-blur-sm transition-all duration-300 focus:border-primary-500 focus:bg-white/[0.05] focus:shadow-lg focus:ring-2 focus:shadow-primary-500/20 focus:ring-primary-500/50 focus:outline-none"
 								></textarea>
 							</div>
 
-							<button type="submit" disabled={isSubmitting} class="btn-cta w-full">
-								{#if isSubmitting}
-									<span
-										class="inline-block h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"
-									></span>
-									Sending...
-								{:else}
-									Send Message
-									<span aria-hidden="true">→</span>
-								{/if}
+							<button
+								type="submit"
+								disabled={isSubmitting}
+								class="group relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-primary-500 to-accent-500 px-8 py-4 font-bold text-white shadow-lg shadow-primary-500/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary-500/40 focus:ring-2 focus:ring-primary-400 focus:ring-offset-2 focus:ring-offset-black focus:outline-none disabled:opacity-50 disabled:hover:translate-y-0"
+							>
+								<span class="relative z-10 flex items-center justify-center gap-2">
+									{#if isSubmitting}
+										<span
+											class="inline-block h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent"
+										></span>
+										Sending...
+									{:else}
+										Send Message
+										<span class="transition-transform duration-300 group-hover:translate-x-1"
+											>→</span
+										>
+									{/if}
+								</span>
+								<div
+									class="absolute inset-0 -translate-x-full bg-gradient-to-r from-accent-500 to-primary-500 transition-transform duration-300 group-hover:translate-x-0"
+								></div>
 							</button>
 						</div>
 					</form>
@@ -256,7 +284,7 @@
 		aria-modal="true"
 	>
 		<div
-			class="surface w-full max-w-md rounded-2xl p-8 shadow-2xl"
+			class="w-full max-w-md rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.05] to-transparent p-8 shadow-2xl backdrop-blur-md"
 			on:click|stopPropagation
 			on:keydown|stopPropagation
 			role="document"
@@ -264,154 +292,17 @@
 		>
 			<div class="text-center">
 				<div class="mb-4 text-6xl">{isSuccess ? '✅' : '❌'}</div>
-				<h3 class="mb-4 text-2xl font-bold">{isSuccess ? 'Message Sent!' : 'Oops!'}</h3>
-				<p class="mb-6 text-secondary">{modalMessage}</p>
-				<button on:click={closeModal} class="btn-cta w-full"
-					>{isSuccess ? 'Okay' : 'Try Again'}</button
+				<h3 class="mb-4 text-2xl font-bold text-white">
+					{isSuccess ? 'Message Sent!' : 'Oops!'}
+				</h3>
+				<p class="mb-6 text-secondary-300">{modalMessage}</p>
+				<button
+					on:click={closeModal}
+					class="w-full rounded-xl bg-gradient-to-r from-primary-500 to-accent-500 px-8 py-4 font-bold text-white shadow-lg shadow-primary-500/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary-500/40"
 				>
+					{isSuccess ? 'Okay' : 'Try Again'}
+				</button>
 			</div>
 		</div>
 	</div>
 {/if}
-
-<!-- Theme: only three tunable color variables (primary, secondary, accent) -->
-<style>
-	:root {
-		--color-primary: #10b981; /* emerald */
-		--color-secondary: #64748b; /* muted grayscale */
-		--color-accent: #14b8a6; /* accent (near-emerald) */
-
-		--ff-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-	}
-
-	/* Over-the-fold utility: hero must be visible without scroll on most screens */
-	.hero-fold {
-		min-height: 62vh; /* tuned to keep headline + CTA above the fold on desktop and large tablets */
-		display: grid;
-		place-items: center;
-		text-align: center;
-	}
-
-	/* Slide animations (CSS + small Svelte-friendly classes) */
-	@keyframes slide-up-in {
-		from {
-			transform: translateY(24px);
-			opacity: 0;
-		}
-		to {
-			transform: translateY(0);
-			opacity: 1;
-		}
-	}
-	@keyframes slide-down-in {
-		from {
-			transform: translateY(-24px);
-			opacity: 0;
-		}
-		to {
-			transform: translateY(0);
-			opacity: 1;
-		}
-	}
-	@keyframes slide-up-out {
-		from {
-			transform: translateY(0);
-			opacity: 1;
-		}
-		to {
-			transform: translateY(-12px);
-			opacity: 0;
-		}
-	}
-
-	.enter-up {
-		animation: slide-up-in 520ms cubic-bezier(0.2, 0.9, 0.2, 1) both;
-	}
-	.enter-down {
-		animation: slide-down-in 520ms cubic-bezier(0.2, 0.9, 0.2, 1) both;
-	}
-	.exit-up {
-		animation: slide-up-out 320ms ease both;
-	}
-
-	/* Small reusable surface styles using only primary/secondary/accent */
-	.surface {
-		background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.04));
-		border-radius: 12px;
-		border: 1px solid rgba(255, 255, 255, 0.04);
-	}
-
-	:global(body) {
-		font-family: var(--ff-sans);
-		background: #0b1220;
-		color: white;
-	}
-
-	/* Utility classes for colors that reference the three variables */
-	.text-primary {
-		color: var(--color-primary);
-	}
-	.text-secondary {
-		color: var(--color-secondary);
-	}
-	.bg-primary {
-		background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
-	}
-	.border-primary {
-		border-color: rgba(16, 185, 129, 0.15);
-	}
-
-	/* Button using only the three tokens */
-	.btn-cta {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.6rem;
-		padding: 0.9rem 1.2rem;
-		border-radius: 10px;
-		font-weight: 600;
-		cursor: pointer;
-		text-decoration: none;
-		border: none;
-		background-image: linear-gradient(90deg, var(--color-primary), var(--color-accent));
-		color: white;
-		box-shadow: 0 8px 30px rgba(16, 185, 129, 0.12);
-		transition:
-			transform 0.18s ease,
-			box-shadow 0.18s ease;
-	}
-	.btn-cta:hover {
-		transform: translateY(-3px);
-		box-shadow: 0 18px 40px rgba(20, 184, 166, 0.12);
-	}
-
-	/* small responsive tweaks */
-	@media (max-width: 768px) {
-		.hero-fold {
-			padding: 3rem 1.25rem;
-			min-height: 56vh;
-		}
-	}
-
-	/* blob animation preserved but toned down and colored with primary/accent */
-	@keyframes blob {
-		0%,
-		100% {
-			transform: translate(0, 0) scale(1);
-		}
-		25% {
-			transform: translate(20px, -50px) scale(1.05);
-		}
-		50% {
-			transform: translate(-20px, 20px) scale(0.95);
-		}
-		75% {
-			transform: translate(20px, 50px) scale(1.02);
-		}
-	}
-	.blob {
-		animation: blob 8s infinite;
-		filter: blur(48px);
-		opacity: 0.08;
-		mix-blend-mode: multiply;
-	}
-</style>

@@ -1,12 +1,17 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
-	import { fade, fly } from 'svelte/transition';
+	import { fade, fly, scale } from 'svelte/transition';
 	import { getProjectBySlug, projects } from '$lib/data/projects';
 
 	let isVisible = false;
 	let project: ReturnType<typeof getProjectBySlug> = undefined;
 	let relatedProjects: typeof projects = [];
+
+	// Lightbox state
+	let showLightbox = false;
+	let currentImageIndex = 0;
+	let lightboxImages: string[] = [];
 
 	$: slug = $page.params.slug;
 
@@ -30,6 +35,36 @@
 	$: if (slug) {
 		loadProject();
 	}
+
+	function openLightbox(index: number) {
+		if (project?.gallery) {
+			lightboxImages = project.gallery;
+			currentImageIndex = index;
+			showLightbox = true;
+			document.body.style.overflow = 'hidden';
+		}
+	}
+
+	function closeLightbox() {
+		showLightbox = false;
+		document.body.style.overflow = 'auto';
+	}
+
+	function nextImage() {
+		currentImageIndex = (currentImageIndex + 1) % lightboxImages.length;
+	}
+
+	function previousImage() {
+		currentImageIndex = (currentImageIndex - 1 + lightboxImages.length) % lightboxImages.length;
+	}
+
+	function handleKeydown(e: KeyboardEvent) {
+		if (!showLightbox) return;
+
+		if (e.key === 'Escape') closeLightbox();
+		if (e.key === 'ArrowRight') nextImage();
+		if (e.key === 'ArrowLeft') previousImage();
+	}
 </script>
 
 <svelte:head>
@@ -39,32 +74,32 @@
 	{/if}
 </svelte:head>
 
+<svelte:window on:keydown={handleKeydown} />
+
 {#if !project}
-	<div
-		class="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 px-6 text-white"
-	>
+	<div class="flex min-h-screen items-center justify-center bg-black px-6 text-white">
 		<div class="text-center">
 			<div class="mb-6 text-8xl">😕</div>
 			<h1 class="mb-4 text-4xl font-bold">Project Not Found</h1>
-			<p class="mb-8 text-slate-400">The project you're looking for doesn't exist.</p>
+			<p class="mb-8 text-secondary-400">The project you're looking for doesn't exist.</p>
 			<a
 				href="/projects"
-				class="inline-block rounded-full bg-gradient-to-r from-primary-600 to-primary-600 px-8 py-4 font-semibold transition-transform hover:scale-105"
+				class="inline-block rounded-full bg-gradient-to-r from-primary-500 to-accent-500 px-8 py-4 font-semibold shadow-lg shadow-primary-500/30 transition-all hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary-500/50"
 			>
 				View All Projects
 			</a>
 		</div>
 	</div>
 {:else}
-	<div class="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white">
-		<!-- Hero Section -->
-		<section class="relative overflow-hidden px-6 pt-32 pb-20">
+	<div class="min-h-screen bg-black text-white">
+		<!-- Hero Section - Above the Fold -->
+		<section class="relative overflow-hidden px-6 pt-24 pb-12">
 			<div class="pointer-events-none absolute inset-0 overflow-hidden">
 				<div
 					class="animate-blob absolute top-0 left-1/4 h-96 w-96 rounded-full bg-primary-500 opacity-10 mix-blend-multiply blur-3xl filter"
 				></div>
 				<div
-					class="animate-blob animation-delay-2000 absolute top-0 right-1/4 h-96 w-96 rounded-full bg-primary-500 opacity-10 mix-blend-multiply blur-3xl filter"
+					class="animate-blob animation-delay-2000 absolute top-0 right-1/4 h-96 w-96 rounded-full bg-accent-500 opacity-10 mix-blend-multiply blur-3xl filter"
 				></div>
 			</div>
 
@@ -74,40 +109,97 @@
 						<!-- Back Button -->
 						<a
 							href="/projects"
-							class="mb-8 inline-flex items-center gap-2 text-primary-400 transition-all hover:gap-3"
+							class="mb-6 inline-flex items-center gap-2 text-primary-400 transition-all duration-300 hover:gap-3 hover:text-primary-300"
 						>
-							<span>←</span> Back to Projects
+							<span class="transition-transform group-hover:-translate-x-1">←</span> Back to Projects
 						</a>
 
-						<!-- Category Badge -->
-						<div
-							class="mb-6 inline-block rounded-full bg-primary-500/20 px-4 py-2 text-sm text-primary-300"
-						>
-							{project.category}
-						</div>
+						<div class="grid gap-8 lg:grid-cols-2 lg:items-center">
+							<!-- Left: Content -->
+							<div>
+								<!-- Category Badge -->
+								<div
+									class="mb-4 inline-block rounded-full border border-primary-500/30 bg-primary-500/20 px-4 py-1.5 text-sm font-medium text-primary-300 backdrop-blur-sm"
+								>
+									{project.category}
+								</div>
 
-						<h1
-							class="mb-6 bg-gradient-to-r from-primary-400 to-primary-400 bg-clip-text text-5xl font-bold text-transparent md:text-7xl"
-						>
-							{project.title}
-						</h1>
-						<p class="mb-8 max-w-3xl text-xl text-slate-300 md:text-2xl">
-							{project.shortDescription}
-						</p>
+								<h1
+									class="mb-4 bg-gradient-to-r from-primary-400 to-accent-400 bg-clip-text text-4xl font-bold text-transparent md:text-5xl lg:text-6xl"
+								>
+									{project.title}
+								</h1>
+								<p class="mb-6 text-lg text-secondary-400 md:text-xl">
+									{project.shortDescription}
+								</p>
 
-						<!-- Project Meta -->
-						<div class="flex flex-wrap gap-6 text-sm">
-							<div class="flex items-center gap-2">
-								<span class="text-slate-400">Client:</span>
-								<span class="font-semibold">{project.client}</span>
+								<!-- Project Meta -->
+								<div class="mb-6 flex flex-wrap gap-4 text-sm">
+									<div
+										class="flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.02] px-3 py-2"
+									>
+										<span class="text-secondary-500">Client:</span>
+										<span class="font-semibold text-white">{project.client}</span>
+									</div>
+									<div
+										class="flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.02] px-3 py-2"
+									>
+										<span class="text-secondary-500">Duration:</span>
+										<span class="font-semibold text-white">{project.duration}</span>
+									</div>
+									<div
+										class="flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.02] px-3 py-2"
+									>
+										<span class="text-secondary-500">Year:</span>
+										<span class="font-semibold text-white">{project.year}</span>
+									</div>
+								</div>
+
+								<!-- Action Buttons -->
+								<div class="flex flex-wrap gap-4">
+									{#if project.liveUrl}
+										<a
+											href={project.liveUrl}
+											target="_blank"
+											rel="noopener noreferrer"
+											class="group relative inline-flex items-center gap-2 overflow-hidden rounded-lg bg-gradient-to-r from-primary-500 to-accent-500 px-6 py-3 font-semibold text-white shadow-lg shadow-primary-500/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary-500/50"
+										>
+											<span class="relative z-10">View Live Site</span>
+											<span
+												class="relative z-10 transition-transform duration-300 group-hover:translate-x-1"
+												>→</span
+											>
+											<div
+												class="absolute inset-0 -translate-x-full bg-gradient-to-r from-accent-500 to-primary-500 transition-transform duration-300 group-hover:translate-x-0"
+											></div>
+										</a>
+									{/if}
+									{#if project.githubUrl}
+										<a
+											href={project.githubUrl}
+											target="_blank"
+											rel="noopener noreferrer"
+											class="inline-flex items-center gap-2 rounded-lg border-2 border-primary-500 px-6 py-3 font-semibold text-primary-400 transition-all duration-300 hover:-translate-y-1 hover:bg-primary-500/10 hover:shadow-lg hover:shadow-primary-500/20"
+										>
+											💻 View Code
+										</a>
+									{/if}
+								</div>
 							</div>
-							<div class="flex items-center gap-2">
-								<span class="text-slate-400">Duration:</span>
-								<span class="font-semibold">{project.duration}</span>
-							</div>
-							<div class="flex items-center gap-2">
-								<span class="text-slate-400">Year:</span>
-								<span class="font-semibold">{project.year}</span>
+
+							<!-- Right: Featured Image -->
+							<div in:fly={{ x: 50, delay: 200 }}>
+								<div
+									class="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.03] to-transparent p-1 shadow-2xl"
+								>
+									<div class="aspect-video overflow-hidden rounded-xl">
+										<img
+											src={project.image}
+											alt={project.title}
+											class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+										/>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -116,61 +208,15 @@
 		</section>
 
 		<!-- Main Content -->
-		<section class="px-6 py-20">
+		<section class="px-6 py-12">
 			<div class="mx-auto max-w-6xl">
-				<!-- Project Showcase -->
-				<div class="mb-20" in:fly={{ y: 30, delay: 200 }}>
-					<div
-						class="relative aspect-video rounded-2xl bg-gradient-to-br {project.gradient} group overflow-hidden p-1"
-					>
-						<div
-							class="absolute inset-0 bg-gradient-to-br {project.gradient} opacity-20 transition-opacity group-hover:opacity-30"
-						></div>
-						<div
-							class="relative flex h-full w-full items-center justify-center rounded-xl bg-slate-900"
-						>
-							<div class="text-9xl">
-								<img
-									src={project.image}
-									alt={project.title}
-									class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-								/>
-							</div>
-						</div>
-					</div>
-
-					<!-- Action Buttons -->
-					<div class="mt-8 flex flex-wrap gap-4">
-						{#if project.liveUrl}
-							<a
-								href={project.liveUrl}
-								target="_blank"
-								rel="noopener noreferrer"
-								class="flex items-center gap-2 rounded-lg bg-gradient-to-r from-primary-600 to-primary-600 px-6 py-3 font-semibold transition-transform hover:scale-105"
-							>
-								View Live Site <span>→</span>
-							</a>
-						{/if}
-						{#if project.githubUrl}
-							<a
-								href={project.githubUrl}
-								target="_blank"
-								rel="noopener noreferrer"
-								class="flex items-center gap-2 rounded-lg border-2 border-primary-500 px-6 py-3 font-semibold transition-all hover:scale-105 hover:bg-primary-500/10"
-							>
-								💻 View Code
-							</a>
-						{/if}
-					</div>
-				</div>
-
-				<div class="grid gap-12 lg:grid-cols-3">
+				<div class="grid gap-8 lg:grid-cols-3">
 					<!-- Main Content -->
 					<div class="space-y-12 lg:col-span-2">
 						<!-- About Project -->
 						<div in:fly={{ y: 30, delay: 300 }}>
 							<h2 class="mb-6 text-3xl font-bold text-primary-400">About the Project</h2>
-							<p class="text-lg leading-relaxed text-slate-300">
+							<p class="text-lg leading-relaxed text-secondary-300">
 								{project.description}
 							</p>
 						</div>
@@ -178,13 +224,17 @@
 						<!-- Features -->
 						<div in:fly={{ y: 30, delay: 400 }}>
 							<h2 class="mb-6 text-3xl font-bold text-primary-400">Key Features</h2>
-							<div class="space-y-4">
+							<div class="space-y-3">
 								{#each project.features as feature, i}
 									<div
-										class="flex items-start gap-4 rounded-xl border border-slate-700/50 bg-slate-800/30 p-4 transition-all hover:border-primary-500/50"
+										class="group flex items-start gap-4 rounded-xl border border-white/10 bg-gradient-to-br from-white/[0.03] to-transparent p-4 transition-all duration-300 hover:-translate-x-1 hover:border-primary-500/50 hover:bg-white/[0.05]"
 									>
-										<div class="mt-1 text-2xl">✓</div>
-										<p class="text-slate-300">{feature}</p>
+										<div
+											class="mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary-500/20 text-sm font-bold text-primary-400 transition-all duration-300 group-hover:bg-primary-500/30"
+										>
+											✓
+										</div>
+										<p class="text-secondary-300">{feature}</p>
 									</div>
 								{/each}
 							</div>
@@ -195,16 +245,18 @@
 							<h2 class="mb-6 text-3xl font-bold text-primary-400">Challenges & Solutions</h2>
 							<div class="space-y-4">
 								{#each project.challenges as challenge, i}
-									<div class="rounded-xl border border-slate-700/50 bg-slate-800/30 p-6">
+									<div
+										class="rounded-xl border border-white/10 bg-gradient-to-br from-white/[0.03] to-transparent p-6 transition-all duration-300 hover:border-primary-500/50"
+									>
 										<div class="mb-3 flex items-center gap-3">
 											<div
-												class="flex h-8 w-8 items-center justify-center rounded-full bg-primary-500/20 font-bold text-primary-400"
+												class="flex h-10 w-10 items-center justify-center rounded-full bg-primary-500/20 text-sm font-bold text-primary-400"
 											>
 												{i + 1}
 											</div>
-											<h3 class="font-semibold">Challenge #{i + 1}</h3>
+											<h3 class="font-semibold text-white">Challenge #{i + 1}</h3>
 										</div>
-										<p class="text-slate-300">{challenge}</p>
+										<p class="text-secondary-300">{challenge}</p>
 									</div>
 								{/each}
 							</div>
@@ -216,12 +268,14 @@
 							<div class="grid gap-6 sm:grid-cols-3">
 								{#each project.results as result, i}
 									<div
-										class="rounded-xl border border-primary-500/20 bg-gradient-to-br from-primary-500/10 to-primary-500/10 p-6 text-center transition-transform hover:scale-105"
+										class="group rounded-xl border border-primary-500/30 bg-gradient-to-br from-primary-500/10 via-accent-500/5 to-transparent p-6 text-center transition-all duration-300 hover:-translate-y-2 hover:border-primary-500/50 hover:shadow-xl hover:shadow-primary-500/20"
 									>
-										<div class="mb-3 text-4xl">
+										<div
+											class="mb-3 text-4xl transition-transform duration-300 group-hover:scale-110"
+										>
 											{i === 0 ? '📈' : i === 1 ? '⚡' : '🎯'}
 										</div>
-										<p class="text-sm text-slate-300">{result}</p>
+										<p class="text-sm text-secondary-300">{result}</p>
 									</div>
 								{/each}
 							</div>
@@ -233,35 +287,44 @@
 								<h2 class="mb-6 text-3xl font-bold text-primary-400">Project Gallery</h2>
 								<div class="grid grid-cols-2 gap-4">
 									{#each project.gallery as item, i}
-										<div
-											class="group flex aspect-video items-center justify-center rounded-xl border border-slate-700/50 bg-slate-800/30 transition-all hover:border-primary-500/50"
+										<button
+											on:click={() => openLightbox(i)}
+											class="group relative aspect-video cursor-pointer overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-white/[0.03] to-transparent transition-all duration-300 hover:border-primary-500/50 hover:shadow-xl hover:shadow-primary-500/10"
 										>
-											<div class="text-6xl transition-transform group-hover:scale-110">
-												<img
-													src={item}
-													alt="Gallery Item"
-													class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-												/>
+											<img
+												src={item}
+												alt="Gallery Item {i + 1}"
+												class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+											/>
+											<!-- Hover Overlay -->
+											<div
+												class="absolute inset-0 flex items-center justify-center bg-black/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+											>
+												<div
+													class="flex h-12 w-12 items-center justify-center rounded-full bg-primary-500/20 backdrop-blur-sm"
+												>
+													<span class="text-2xl">🔍</span>
+												</div>
 											</div>
-										</div>
+										</button>
 									{/each}
 								</div>
 							</div>
 						{/if}
 					</div>
 
-					<!-- Sidebar -->
-					<div class="space-y-8">
+					<!-- Sidebar - Both Sidebars Sticky -->
+					<div class="space-y-6">
 						<!-- Tech Stack -->
 						<div
-							class="sticky top-24 rounded-xl border border-slate-700/50 bg-slate-800/30 p-6"
+							class="sticky top-24 rounded-xl border border-white/10 bg-black p-6 shadow-lg"
 							in:fly={{ x: 50, delay: 300 }}
 						>
-							<h3 class="mb-4 text-xl font-bold">Technologies Used</h3>
-							<div class="space-y-3">
+							<h3 class="mb-4 text-xl font-bold text-white">Technologies Used</h3>
+							<div class="space-y-2">
 								{#each project.tech as tech}
 									<div
-										class="rounded-lg border border-slate-700/30 bg-slate-900/50 px-4 py-2 text-sm transition-all hover:border-primary-500/50 hover:bg-primary-500/10"
+										class="rounded-lg border border-white/10 bg-gradient-to-br from-primary-500/5 to-transparent px-4 py-2.5 text-sm font-medium text-primary-300 transition-all duration-300 hover:border-primary-500/30 hover:bg-primary-500/10"
 									>
 										{tech}
 									</div>
@@ -271,18 +334,21 @@
 
 						<!-- CTA -->
 						<div
-							class="rounded-xl border border-primary-500/20 bg-gradient-to-br from-primary-500/10 to-primary-500/10 p-6"
+							class="sticky top-[28rem] rounded-xl border border-primary-500/30 bg-black p-6 shadow-lg shadow-primary-500/10"
 							in:fly={{ x: 50, delay: 400 }}
 						>
-							<h3 class="mb-3 text-xl font-bold">Interested in Similar Work?</h3>
-							<p class="mb-4 text-sm text-slate-400">
+							<h3 class="mb-3 text-xl font-bold text-white">Interested in Similar Work?</h3>
+							<p class="mb-4 text-sm text-secondary-400">
 								Let's discuss how I can help with your project.
 							</p>
 							<a
 								href="/contact"
-								class="block rounded-lg bg-gradient-to-r from-primary-600 to-primary-600 px-6 py-3 text-center font-semibold transition-transform hover:scale-105"
+								class="group relative block overflow-hidden rounded-lg bg-gradient-to-r from-primary-500 to-accent-500 px-6 py-3 text-center font-semibold text-white shadow-lg shadow-primary-500/30 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary-500/50"
 							>
-								Get In Touch
+								<span class="relative z-10">Get In Touch</span>
+								<div
+									class="absolute inset-0 -translate-x-full bg-gradient-to-r from-accent-500 to-primary-500 transition-transform duration-300 group-hover:translate-x-0"
+								></div>
 							</a>
 						</div>
 					</div>
@@ -292,10 +358,10 @@
 
 		<!-- Related Projects -->
 		{#if relatedProjects.length > 0}
-			<section class="border-t border-slate-800 px-6 py-20">
+			<section class="border-t border-white/5 px-6 py-20">
 				<div class="mx-auto max-w-6xl">
 					<h2
-						class="mb-12 bg-gradient-to-r from-primary-400 to-primary-400 bg-clip-text text-center text-4xl font-bold text-transparent"
+						class="mb-12 bg-gradient-to-r from-primary-400 to-accent-400 bg-clip-text text-center text-4xl font-bold text-transparent"
 					>
 						Related Projects
 					</h2>
@@ -303,22 +369,24 @@
 						{#each relatedProjects as relatedProject, i}
 							<a
 								href="/projects/{relatedProject.slug}"
-								class="group relative overflow-hidden rounded-2xl border border-slate-700/50 bg-slate-800/30 backdrop-blur-sm transition-all hover:scale-105"
+								class="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.03] to-transparent shadow-lg backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:border-primary-500/50 hover:shadow-2xl hover:shadow-primary-500/20"
 								in:fly={{ y: 30, delay: i * 100 }}
 							>
 								<div
-									class="absolute inset-0 bg-gradient-to-br {relatedProject.gradient} opacity-0 transition-opacity group-hover:opacity-10"
+									class="absolute inset-0 bg-gradient-to-br from-primary-500/10 via-accent-500/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
 								></div>
+								<div class="relative aspect-video overflow-hidden">
+									<img
+										src={relatedProject.image}
+										alt={relatedProject.title}
+										class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+									/>
+								</div>
 								<div class="relative z-10 p-6">
-									<div class="mb-4 text-5xl">
-										<img
-											src={relatedProject.image}
-											alt={relatedProject.title}
-											class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-										/>
-									</div>
-									<h3 class="mb-2 text-xl font-bold">{relatedProject.title}</h3>
-									<p class="line-clamp-2 text-sm text-slate-400">
+									<h3 class="mb-2 text-xl font-bold text-white group-hover:text-primary-400">
+										{relatedProject.title}
+									</h3>
+									<p class="line-clamp-2 text-sm text-secondary-400">
 										{relatedProject.shortDescription}
 									</p>
 								</div>
@@ -329,6 +397,85 @@
 			</section>
 		{/if}
 	</div>
+
+	<!-- Lightbox Modal -->
+	{#if showLightbox}
+		<div
+			class="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-sm"
+			on:click={closeLightbox}
+			transition:fade={{ duration: 200 }}
+		>
+			<!-- Close Button -->
+			<button
+				on:click={closeLightbox}
+				class="absolute top-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-black/50 text-2xl text-white backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:border-primary-500/50 hover:bg-primary-500/20"
+				aria-label="Close lightbox"
+			>
+				✕
+			</button>
+
+			<!-- Image Counter -->
+			<div
+				class="absolute top-6 left-1/2 z-50 -translate-x-1/2 rounded-full border border-white/20 bg-black/50 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm"
+			>
+				{currentImageIndex + 1} / {lightboxImages.length}
+			</div>
+
+			<!-- Previous Button -->
+			{#if lightboxImages.length > 1}
+				<button
+					on:click|stopPropagation={previousImage}
+					class="absolute left-6 z-50 flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-black/50 text-3xl text-white backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:border-primary-500/50 hover:bg-primary-500/20"
+					aria-label="Previous image"
+				>
+					←
+				</button>
+			{/if}
+
+			<!-- Image Container -->
+			<div
+				class="relative mx-auto flex h-[85vh] max-w-7xl items-center justify-center px-20"
+				on:click|stopPropagation
+			>
+				<img
+					src={lightboxImages[currentImageIndex]}
+					alt="Gallery image {currentImageIndex + 1}"
+					class="max-h-full max-w-full rounded-lg object-contain shadow-2xl shadow-primary-500/20"
+					transition:scale={{ duration: 300 }}
+				/>
+			</div>
+
+			<!-- Next Button -->
+			{#if lightboxImages.length > 1}
+				<button
+					on:click|stopPropagation={nextImage}
+					class="absolute right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-black/50 text-3xl text-white backdrop-blur-sm transition-all duration-300 hover:scale-110 hover:border-primary-500/50 hover:bg-primary-500/20"
+					aria-label="Next image"
+				>
+					→
+				</button>
+			{/if}
+
+			<!-- Thumbnails -->
+			{#if lightboxImages.length > 1}
+				<div
+					class="absolute bottom-6 left-1/2 z-50 flex -translate-x-1/2 gap-2 rounded-full border border-white/20 bg-black/50 p-2 backdrop-blur-sm"
+				>
+					{#each lightboxImages as img, i}
+						<button
+							on:click|stopPropagation={() => (currentImageIndex = i)}
+							class="h-16 w-16 overflow-hidden rounded-lg border-2 transition-all duration-300 {i ===
+							currentImageIndex
+								? 'scale-110 border-primary-500'
+								: 'border-white/20 opacity-60 hover:border-primary-500/50 hover:opacity-100'}"
+						>
+							<img src={img} alt="Thumbnail {i + 1}" class="h-full w-full object-cover" />
+						</button>
+					{/each}
+				</div>
+			{/if}
+		</div>
+	{/if}
 {/if}
 
 <style>

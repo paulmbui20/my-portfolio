@@ -26,5 +26,5 @@
 <ReviewSlider />
 <Projects />
 <Services />
-<CTA />
 <FAQs />
+<CTA />
