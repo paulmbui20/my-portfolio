@@ -55,8 +55,8 @@
 		class="pointer-events-none absolute inset-0 overflow-hidden"
 		style="transform: translateY({scrollY * 0.5}px)"
 	>
-		<div class="absolute top-20 right-10 h-96 w-96 rounded-full bg-primary-500/10 blur-3xl" />
-		<div class="absolute bottom-0 left-0 h-80 w-80 rounded-full bg-primary-500/5 blur-3xl" />
+		<div class="absolute top-20 right-10 h-96 w-96 rounded-full bg-primary-500/10 blur-3xl"></div>
+		<div class="absolute bottom-0 left-0 h-80 w-80 rounded-full bg-primary-500/5 blur-3xl"></div>
 	</div>
 
 	<!-- HERO GRID: Name full-width on large screens, content rows beneath -->
