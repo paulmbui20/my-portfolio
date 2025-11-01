@@ -40,31 +40,14 @@
 			</p>
 		</div>
 
-		<!-- Email subscription -->
-		<form on:submit={handleSubmit} class="mx-auto flex max-w-md gap-3">
-			<input
-				type="email"
-				placeholder="your@email.com"
-				bind:value={email}
-				required
-				class="flex-1 rounded-lg border border-emerald-500/30 bg-white/5 px-4 py-3 text-white placeholder-gray-500 transition-all focus:border-emerald-400 focus:bg-white/10 focus:outline-none"
-			/>
-			<button
-				type="submit"
-				class="rounded-lg bg-emerald-500 px-6 py-3 font-semibold whitespace-nowrap text-black transition-all duration-300 hover:bg-emerald-400 hover:shadow-lg hover:shadow-emerald-500/50"
-			>
-				{submitted ? '✓ Sent!' : 'Send'}
-			</button>
-		</form>
 
 		<!-- CTA Buttons -->
 		<div class="flex flex-col justify-center gap-4 sm:flex-row">
 			<a
-				href="mailto:hello@paulmbui.co.ke"
+				href="/contact"
 				class="rounded-lg bg-emerald-500 px-8 py-3 font-semibold text-black transition-all duration-300 hover:bg-emerald-400 hover:shadow-lg hover:shadow-emerald-500/50"
 			>
-				Email Me
-			</a>
+				Reach Out Now			</a>
 			<a
 				href="/projects"
 				class="rounded-lg border border-emerald-500 px-8 py-3 font-semibold text-emerald-400 transition-all duration-300 hover:bg-emerald-500/10"

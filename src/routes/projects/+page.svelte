@@ -1,11 +1,16 @@
+<!-- src/routes/projects/+page.svelte -->
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { fade, fly } from 'svelte/transition';
-	import { projects, categories } from '$lib/data/projects.js';
+	import { categories } from '$lib/data/projects';
+	import { getImageUrl } from '$lib/data/projects';
+	import type { PageData } from './$types';
+
+	export let data: PageData;
 
 	let isVisible = false;
 	let selectedCategory = 'All';
-	let filteredProjects = projects;
+	let filteredProjects = data.projects;
 
 	onMount(() => {
 		isVisible = true;
@@ -14,9 +19,9 @@
 	function filterProjects(category: string) {
 		selectedCategory = category;
 		if (category === 'All') {
-			filteredProjects = projects;
+			filteredProjects = data.projects;
 		} else {
-			filteredProjects = projects.filter((p) => p.category === category);
+			filteredProjects = data.projects.filter((p) => p.category === category);
 		}
 	}
 </script>
@@ -81,7 +86,7 @@
 	<section class="px-6 py-12">
 		<div class="mx-auto max-w-6xl">
 			<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-				{#each filteredProjects as project, i (project.slug)}
+				{#each filteredProjects as project, i (project.id)}
 					<a
 						href="/projects/{project.slug}"
 						class="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.03] to-transparent shadow-lg backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:border-primary-500/50 hover:shadow-2xl hover:shadow-primary-500/20"
@@ -95,7 +100,7 @@
 						<!-- Project Image -->
 						<div class="relative h-48 overflow-hidden">
 							<img
-								src={project.image}
+								src={getImageUrl(project, project.image)}
 								alt={project.title}
 								class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
 							/>
