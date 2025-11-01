@@ -4,7 +4,7 @@
 	import Projects from '$lib/components/sections/projects.svelte';
 	import CTA from '$lib/components/sections/cta.svelte';
 	import FAQs from '$lib/components/sections/faqs.svelte';
-	import ReviewSlider from '$lib/components/sections/review-slider.svelte';
+	import ReviewSection from '$lib/components/sections/reviews-section.svelte';
 </script>
 
 <svelte:head>
@@ -23,7 +23,7 @@
 </svelte:head>
 
 <Hero />
-<ReviewSlider />
+<ReviewSection />
 <Projects />
 <Services />
 <FAQs />
