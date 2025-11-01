@@ -35,6 +35,14 @@ RUN --mount=type=cache,target=/root/.npm \
 
 # Copy source files and build
 COPY . .
+
+# Pass Svelte public environment variables at build time
+ARG PUBLIC_POCKETBASE_URL
+ENV PUBLIC_POCKETBASE_URL=$PUBLIC_POCKETBASE_URL
+
+ARG PUBLIC_SITE_URL
+ENV PUBLIC_SITE_URL=$PUBLIC_SITE_URL
+
 RUN npm run build
 
 ################################################################################

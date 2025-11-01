@@ -1,6 +1,6 @@
-import { projects } from '$lib/data/projects';
+import { getProjects } from '$lib/data/projects';
 import { services } from '$lib/data/services';
-const site = 'https://paulmbui.co.ke';
+import { PUBLIC_SITE_URL } from '$env/static/public';
 
 export async function GET() {
 	const pages = [
@@ -11,24 +11,20 @@ export async function GET() {
 		{ url: '/services', priority: '0.9', changefreq: 'weekly' }
 	];
 
-	// Add all project pages
-	const projectPages = projects.map((project) => ({
+	const projectRecords = await getProjects();
+	const projectPages = projectRecords.map((project) => ({
 		url: `/projects/${project.slug}`,
 		priority: '0.7',
 		changefreq: 'monthly'
 	}));
 
-	// Add all service pages
 	const servicePages = services.map((service) => ({
 		url: `/services/${service.slug}`,
 		priority: '0.8',
 		changefreq: 'monthly'
 	}));
 
-	// Combine all pages
 	const allPages = [...pages, ...projectPages, ...servicePages];
-
-	// Get current date in YYYY-MM-DD format
 	const today = new Date().toISOString().split('T')[0];
 
 	const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
@@ -37,7 +33,7 @@ ${allPages
 	.map(
 		(page) => `
   <url>
-    <loc>${site}${page.url}</loc>
+    <loc>${PUBLIC_SITE_URL}${page.url}</loc>
     <lastmod>${today}</lastmod>
     <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>
