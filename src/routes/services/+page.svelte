@@ -4,6 +4,7 @@
 	import { fly } from 'svelte/transition';
 	import { getServiceIconUrl } from '$lib/data/services';
 	import type { PageData } from './$types';
+	import ServicesSection from '$lib/components/sections/services.svelte';
 
 	export let data: PageData;
 
@@ -24,7 +25,7 @@
 
 <div class="min-h-screen bg-black text-white">
 	<!-- Hero Section -->
-	<section class="relative overflow-hidden px-6 pt-32 pb-20">
+	<section class="relative overflow-hidden px-6 py-12">
 		<div class="pointer-events-none absolute inset-0 overflow-hidden">
 			<div
 				class="animate-blob absolute top-0 left-1/4 h-96 w-96 rounded-full bg-primary-500 opacity-10 mix-blend-multiply blur-3xl filter"
@@ -50,90 +51,10 @@
 		{/if}
 	</section>
 
-	<!-- Services Grid -->
-	<section class="px-6 py-20">
+	<!-- Services Grid (delegated to reusable component) -->
+	<section class="px-6 py-10">
 		<div class="mx-auto max-w-6xl">
-			{#if data.services.length === 0}
-				<div class="py-20 text-center">
-					<div
-						class="mx-auto mb-4 flex h-24 w-24 items-center justify-center rounded-full bg-secondary-900/50 text-5xl"
-					>
-						🔧
-					</div>
-					<p class="text-lg text-secondary-400">No services available at the moment</p>
-				</div>
-			{:else}
-				<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-					{#each data.services as service, i}
-						<a
-							href="/services/{service.slug}"
-							class="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.03] to-transparent p-8 shadow-lg backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:border-primary-500/50 hover:shadow-2xl hover:shadow-primary-500/20"
-							in:fly={{ y: 50, delay: i * 100 }}
-						>
-							<!-- Gradient Overlay on Hover -->
-							<div
-								class="absolute inset-0 bg-gradient-to-br from-primary-500/10 via-accent-500/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-							></div>
-
-							<div class="relative z-10">
-								<!-- Service Icon -->
-								<div
-									class="mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-primary-500/10 transition-all duration-500 group-hover:scale-110 group-hover:bg-primary-500/20 group-hover:shadow-lg group-hover:shadow-primary-500/30"
-								>
-									{#if service.icon.endsWith('.png') || service.icon.endsWith('.svg') || service.icon.endsWith('.jpg') || service.icon.endsWith('.webp')}
-										<img
-											src={getServiceIconUrl(service, service.icon)}
-											alt={service.title}
-											class="h-12 w-12 object-contain"
-										/>
-									{:else}
-										<span class="text-5xl">{service.icon}</span>
-									{/if}
-								</div>
-
-								<!-- Title -->
-								<h3
-									class="mb-3 text-2xl font-bold text-white transition-colors duration-300 group-hover:text-primary-400"
-								>
-									{service.title}
-								</h3>
-
-								<!-- Description -->
-								<p class="mb-6 line-clamp-3 text-secondary-400">
-									{service.shortDescription}
-								</p>
-
-								<!-- Pricing -->
-								<div
-									class="mb-6 flex items-center justify-between rounded-lg border border-white/5 bg-white/[0.02] p-4 text-sm"
-								>
-									<div>
-										<div class="text-secondary-500">Starting at</div>
-										<div class="font-semibold text-primary-400">{service.pricing.starting}</div>
-									</div>
-									<div class="text-right">
-										<div class="text-secondary-500">Timeline</div>
-										<div class="font-semibold text-accent-400">{service.pricing.timeline}</div>
-									</div>
-								</div>
-
-								<!-- View Service Button -->
-								<div
-									class="flex items-center gap-2 font-semibold text-primary-400 transition-all duration-300 group-hover:gap-4"
-								>
-									Learn More
-									<span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
-								</div>
-							</div>
-
-							<!-- Shine Effect -->
-							<div
-								class="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/5 to-transparent transition-transform duration-700 group-hover:translate-x-full"
-							></div>
-						</a>
-					{/each}
-				</div>
-			{/if}
+			<ServicesSection services={data.services} />
 		</div>
 	</section>
 

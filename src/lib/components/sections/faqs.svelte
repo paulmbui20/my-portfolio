@@ -1,71 +1,62 @@
-<script context="module">
-	export const faqData = [
-		{
-			id: 1,
-			question: 'What web development technologies do you specialize in?',
-			answer:
-				'As a professional web developer in Kenya, I specialize in modern full-stack development with SvelteKit, Django, and FastAPI. I work with databases like PostgreSQL, MySQL and Redis, and deploy on cloud platforms like AWS, Render, Railway, and Vercel. My expertise covers both frontend and backend development for businesses across Kenya and internationally.'
-		},
-		{
-			id: 2,
-			question: 'How long does a typical web development project take?',
-			answer:
-				'Project timelines vary based on scope and complexity. Simple websites take 1-4 weeks, while complex web applications may take 2-6 months. I provide detailed estimates and project timelines after an initial consultation to understand your specific business needs and requirements.'
-		},
-		{
-			id: 3,
-			question: 'Do you offer ongoing maintenance and support for websites?',
-			answer:
-				'Yes! I provide comprehensive maintenance packages including bug fixes, security updates, performance optimization, and feature additions. I also offer support for scaling your web application as your business grows, ensuring your online presence remains competitive in the Kenyan market.'
-		},
-		{
-			id: 4,
-			question: 'What is your web development process?',
-			answer:
-				'I follow an agile methodology with clear communication throughout. This includes a discovery phase to understand your business goals, UI/UX design, iterative development sprints with regular client check-ins, thorough testing, SEO optimization, and seamless deployment with post-launch support.'
-		},
-		{
-			id: 5,
-			question: 'Can you work with existing codebases and legacy systems?',
-			answer:
-				'Absolutely! I often integrate with existing projects, refactor and improve legacy codebases, or migrate outdated systems to modern technologies. Code quality, maintainability, and documentation are always top priorities to ensure your web application remains scalable and easy to update.'
-		},
-		{
-			id: 6,
-			question: 'What is your pricing model for web development services?',
-			answer:
-				'I offer flexible pricing based on project scope and your business needs. Options include fixed-price projects for defined scopes, hourly rates for ongoing maintenance and smaller tasks, or retainer agreements for continuous development and support. Contact me for a personalized quote tailored to your requirements.'
-		}
-	];
-</script>
-
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import type { FaqItem } from '$lib/data/faqs';
+	import { getFaqs } from '$lib/data/faqs';
 
-	let expandedId: number | null = null;
+	// allow parent to pass faqs; otherwise fetch inside
+	export let faqs: FaqItem[] | null = null;
+
+	let faqsLocal: FaqItem[] = [];
+	let expandedId: string | null = null;
 	let visibleItems = new Set();
 
-	function toggleFaq(id: number) {
+	function toggleFaq(id: string) {
 		expandedId = expandedId === id ? null : id;
 	}
 
 	onMount(() => {
-		const observer = new IntersectionObserver((entries) => {
-			entries.forEach((entry) => {
-				if (entry.isIntersecting) {
-					visibleItems.add((entry.target as HTMLElement).dataset.id);
-					visibleItems = visibleItems;
-				}
-			});
-		});
+		let observer: IntersectionObserver | undefined;
 
-		document.querySelectorAll('[data-observe]').forEach((el) => observer.observe(el));
-		return () => observer.disconnect();
+		const startObserver = () => {
+			observer = new IntersectionObserver((entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						const id = (entry.target as HTMLElement).dataset.id;
+						if (id) {
+							visibleItems.add(id);
+							visibleItems = new Set(visibleItems);
+						}
+					}
+				});
+			}, { rootMargin: '0px 0px -100px 0px' });
+
+			requestAnimationFrame(() => {
+				document.querySelectorAll('[data-observe]').forEach((el) => observer!.observe(el));
+			});
+		};
+
+		if (!faqs || faqs.length === 0) {
+			getFaqs()
+				.then((records) => {
+					faqsLocal = records;
+					startObserver();
+				})
+				.catch((e) => {
+					console.error('Failed to fetch faqs', e);
+					faqsLocal = [];
+					startObserver();
+				});
+		} else {
+			faqsLocal = faqs;
+			startObserver();
+		}
+
+		return () => observer?.disconnect();
 	});
 </script>
 
-<section class="relative bg-black px-6 py-20">
-	<div class="pointer-events-none absolute inset-0 overflow-hidden">
+<section class="relative isolate px-6 py-20">
+	<div class="pointer-events-none absolute inset-0 -z-20">
 		<div class="absolute top-1/4 right-10 h-96 w-96 rounded-full bg-primary-500/5 blur-3xl"></div>
 		<div class="absolute bottom-1/4 left-10 h-96 w-96 rounded-full bg-teal-500/5 blur-3xl"></div>
 	</div>
@@ -74,7 +65,7 @@
 		<!-- Header -->
 		<div class="mb-16 space-y-4 text-center">
 			<span class="font-mono text-sm text-primary-400">FREQUENTLY ASKED QUESTIONS</span>
-			<h2 class="text-4xl font-bold md:text-5xl">Common Questions</h2>
+			<h2 class="text-4xl font-bold text-white md:text-5xl">Common Questions</h2>
 			<p class="mx-auto max-w-2xl text-lg text-gray-400">
 				Everything you need to know about working with a professional web developer in Kenya
 			</p>
@@ -82,7 +73,7 @@
 
 		<!-- FAQ Items with Enhanced Cards -->
 		<div class="space-y-4">
-			{#each faqData as faq (faq.id)}
+			{#each (faqsLocal ?? faqs ?? []) as faq, i (faq.id)}
 				<div
 					data-id={faq.id}
 					data-observe
@@ -91,7 +82,9 @@
 					)
 						? 'translate-y-0 opacity-100'
 						: 'translate-y-4 opacity-0'}"
-					style="transition: all 0.5s ease-out {faq.id * 80}ms"
+					style={
+						`transition: all 0.5s ease-out ${(i + 1) * 80}ms;`
+					}
 				>
 					<!-- Gradient Overlay -->
 					<div

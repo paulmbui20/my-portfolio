@@ -1,10 +1,13 @@
-<script>
-	import Hero from '$lib/components/sections/hero.svelte';
-	import Services from '$lib/components/sections/services.svelte';
-	import Projects from '$lib/components/sections/projects.svelte';
-	import CTA from '$lib/components/sections/cta.svelte';
-	import FAQs from '$lib/components/sections/faqs.svelte';
-	import ReviewSection from '$lib/components/sections/reviews-section.svelte';
+<script lang="ts">
+    import type { PageData } from './$types';
+    import Hero from '$lib/components/sections/hero.svelte';
+    import Services from '$lib/components/sections/services.svelte';
+    import Projects from '$lib/components/sections/projects.svelte';
+    import CTA from '$lib/components/sections/cta.svelte';
+    import FAQs from '$lib/components/sections/faqs.svelte';
+    import ReviewSection from '$lib/components/sections/reviews-section.svelte';
+
+    export let data: PageData;
 </script>
 
 <svelte:head>
@@ -129,6 +132,6 @@
 	<ReviewSection />
 	<Projects />
 	<Services />
-	<FAQs />
+	<FAQs faqs={data.faqs} />
 	<CTA />
 </main>
